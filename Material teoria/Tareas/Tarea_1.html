@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tarea 1</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-python.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-bash.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-markup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-yaml.min.js"></script>
+ 	<style>
+		body {
+			padding-top: 1em;
+		}
+		p {
+			padding-top: 0.5em;
+		}
+		h2, h3, h4, h5, h6 {
+			padding-bottom: 0.2em;
+			padding-top: 1em;
+		}
+		.grey {
+			color: grey;
+		}
+
+	</style>
+</head>
+<body>
+		<br>
+		<img src="https://lsi2.ugr.es/oc/index.php/s/7pj7ngJDt8qOhJ5/download" alt="" style="height:300px;width:80%;margin-left:8%">
+	<div class="container">
+		<br><br>
+		<h3>Bases de Datos NoSQL, ORMs</h3>
+		<p>
+			Durante el curso iremos desarrollando una aplicación web, inspirada en <a href="https://www.turgranada.es/cosas-que-hacer/turismo-activo-y-de-naturaleza/excursiones-y-senderismo/">
+			Turgranada</a>, en la que se puedan consultar senderos y rutas por Granada, añadir fotos, mapas
+			y comentarios por parte de los visitantes. 
+		</p>
+		<h4>Base de Datos</h4>
+		<p>
+			Usaremos <a href="https://docs.mongodb.com/guides/">mongodb</a> como base de datos, una BD 
+			<a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a>, que entre otras tiene la ventaja de la flexibilidad, pudiendo cambiar
+			la extructura de los datos durante el desarrollo, sin tener que rehacer la BD. Añadiremos otro servicio a 
+			<b>docker-compose.yml</b> para la BD:
+			<p><pre><code class="language-yaml">version: 3.7
+
+services:
+	web:
+		build: .
+		command: python manage.py runserver 0.0.0.0:8000
+		volumes:
+			- .:/code
+		ports:
+			- 8000:8000
+		depends_on:
+			- mongo
+
+	mongo:
+		image: mongo:4.2
+		ports: 
+			- 27017:27017
+		volumes:
+			- ./datos_db:/data/db
+
+	mongo-express:
+		image: mongo-express
+		ports:
+			- 8081:8081
+		depends_on: 
+			- mongo
+			</code></pre>
+		Donde se ha incuido también otro servicio para un <a href="https://github.com/mongo-express/mongo-express"> cliente gráfico de mongodb</a>
+		</p>
+
+		
+		<h4>Script de población de la BD</h4>
+		<p>
+			Como <a href="https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping">ORM</a> usaremos 
+			<a href="http://mongoengine.org/">mongoengine</a>, un orm para python muy inspirado en el original
+			de <a href="https://docs.djangoproject.com/en/3.1/topics/db/models/">django models</a> pero para mongodb.
+			Tendremos que instalarlo con pip, incluyendolo en el archivo de <b>requirements.txt</b>
+		</p>
+		<p>
+			Podremos hacer ahora un script fijandonos en <a href="https://docs.mongoengine.org/tutorial.html">Tutorial mongoengine</a> o en 
+			<a href="https://github.com/miguelgrubin/intro-pymongo-mongoengine">intro-mongoengine</a>
+		</p>
+		
+
+<pre><code class=language-python"># populate.py
+from mongoengine import connect, Document, EmbeddedDocument	
+from mongoengine.fields import EmbeddedDocumentField, StringField, ListField, IntField, DateTimeField
+from datetime import datetime
+
+connect('senderos', host='mongo')
+
+class Comentarios(EmbeddedDocument):
+	contenido = StringField(required=True)
+	autor     = StringField(max_length=120, required=True)
+	fecha     = DateTimeField(default=datetime.now())
+
+class Excursión(Document):
+	nombre      = StringField(max_length=120, required=True)
+	descripción = StringField(required=True)
+	likes       = IntField(default=0)
+	visitas     = IntField(default=0)
+	tags        = ListField(StringField(max_length=20))
+	duración    = IntField(default=0)
+	comentarios = ListField(EmbeddedDocumentField(Comentarios))
+
+
+comentarios = [
+	{
+		contenido = 'Primer comentario',
+		autor = 'Yo'
+	},
+	{
+		contenido = 'Otro comentario',
+		autor = 'Pepito'
+	}
+]
+
+excursión = Excursión(nombre="Prueba", descripción="asfd asf asdf", likes=1, 
+                      tags=['fácil'], comentarios=comentarios)
+excursión.save() # Para escribir en la BD
+
+...
+
+for excursión in Excursion.objects()
+	print(excursión)
+
+	...
+</code></pre>
+que ejecutamos con:
+<pre><code class="language-bash">$ docker-compose run web python populate.py</code></pre>
+
+<br>
+
+<h4>Ejercicios</h4>
+
+	<ul>
+	<li>Ampliar la bd para incluir fotos</li>
+	<li>Investigar como hacer el backup y restore de la BD</li>
+    </ul>
+
+<br><br>
+	</div>
+</body>
+</html>
+

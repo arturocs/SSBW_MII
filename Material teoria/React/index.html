@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -160px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">React</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>React </h3>
+					<img src="images/App-1317x805.jpg"width="90%" height="480px"/>
+					<p>
+						Para páginas con UI comlejo
+					</p>
+				</section>
+
+				<section>
+					<h3> Clasic vs <strong>Single Page Aplications</strong></h3>
+						<img src="images/web-application-models-over-time.png" width="90%" height="480px"/>
+				</section>
+
+				<section>
+					<h3> Clasic vs SPAs</h3>
+						<img src="images/592e57b84c1b10.48248066.png" width="80%" height="480px"/>
+				</section>
+				<section>
+					<img src="images/single-page-application-12-638.jpg" width="90%" height="520px"/>
+				</section>
+				<section>
+					<h3> Clasic vs SPAs</h3>
+						<img src="images/1.png" width="50%" height="480px"/>
+				</section>
+			<section>
+				<section>
+					<h3>Virtual DOM</h3>
+					<p>
+						Librería de javascript para hacer interfaces web, utilza un DOM virtual
+					</p>
+						<img src="images/virtual_dom_diff.png" width="80%" height="320px"/>
+						<br />
+
+						<a style="font-size:80%" 
+	href="https://levelup.gitconnected.com/angular-vs-react-vs-vue-which-is-the-best-choice-for-2020-81f577697c7e" target="_blank">
+	Angular vs React vs Vue: Which Is the Best Choice for 2021?</a>
+					<br />
+				</section>
+				<section>
+					<h3>Componentes reusables</h3>
+					<p>
+					</p>
+						<img src="images/1*yKaDpHEMugNSn6QR6iRtNA.png" width="80%" height="320px"/>
+						<br />
+
+						<a style="font-size:80%" 
+	href="https://github.com/brillout/awesome-react-components" target="_blank">
+	Absolutely Awesome React Components & Libraries</a>
+					<br />
+				</section>
+			
+			</section>
+				<section>
+					<h3>React</h3>
+					<p>Es una librería de para la interface web,</p>
+					<p>
+						En el modelo <strong>MVC</strong>, react es la <strong>V</strong>,
+						aunque con 
+						<a href="https://redux.js.org/basics/usage-with-react" target="_blank">redux</a>,
+						se puede hacer lógica compleja
+					</p>
+					<br><br>
+					
+					<a href="https://blog.devgenius.io/first-impressions-of-react-js-from-a-c-programmer-23986cfefe29" target="_blank"> 
+						My First Impressions of React.js</a>
+				</section>
+				<section>
+					<h3>JSX</h3>
+					<p>
+						
+					React usa &nbsp;<a href="https://es.reactjs.org/docs/introducing-jsx.html">	javaScript XML</a>
+					</p>
+					<br>
+					<pre><code data-trim class="JavaScript">
+	let   a       = 'Pepito'
+	const element = <h1>Hello, {a}</h1>
+					</code></pre>					
+					<br>
+					<p>No es un string, 
+						se genera otro código con 
+						<a href="https://babeljs.io/repl#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&corejs=3.6&spec=false&loose=false&code_lz=DwEwlgbgfAUABHYALAjFAZu4B6VUUDUATDDuNEA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2&prettier=false&targets=&version=7.14.1&externalPlugins=">Babel</a>,
+						un transpilador para javaScript
+					</p>
+				</section>
+				<section>
+					<a href="https://medium.com/the-codelog/intro-to-react-js-a37696fd99af">Intro to React.js</a>
+				</section>
+				<section>
+					<h3></h3>
+					<p>
+						 <a href="https://www.youtube.com/watch?v=Ke90Tje7VS0" target="_blank">
+							React Tutorial - Learn React - React Crash Course [2019]</a>
+					</p>
+					<br><br>
+					<p>
+					    <a href="https://scrimba.com/learn/learnreact" target="_blank">
+							Learn React for free</a>
+					</p>
+
+				</section>
+
+				<section>
+					Seguimos: &nbsp;&nbsp;
+					<a href="https://ibaslogic.com/react-tutorial-for-beginners/">
+						React Tutorial From Scratch: A Step-by-Step Guide (2021)</a>
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

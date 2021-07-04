@@ -1,0 +1,603 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JavaScript</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -60px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+			}
+			.small {
+				font-size: 80%;
+			}
+			pre {
+				width: 110% !important;
+			}
+			
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">JavaScript en 60'</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+						<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>JavaScript</h3>
+					<br>
+					<p>
+						Seguimos <a href="https://www.youtube.com/watch?v=W6NZfCO5SIk" target="_blank">JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour [2019]</a>
+					</p>
+				</section>
+
+				<section>
+					<h3>javascript</h3>
+					<img src="images/DbKe3xEUQAAOsOg.jpeg" height="480px">
+					<footer class="small">
+						<a href="https://insights.stackoverflow.com/survey/2020#most-popular-technologies" 
+						target="_blank">most popular in stackoverflow</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h3>en browsers y node</h3>
+					<img src="images/Screen-Shot-2019-12-13-at-14.39.01-1200x554.png" height="280px">
+					<p>
+					Los navegadores tienen un entorno de ejecución solo para JavasScript
+					</p>
+					<p>
+						Desde 2011, también en el servidor con <a href="https://nodejs.org/en/"
+						target="_blank">node</a>
+					</p>
+				</section>
+
+			<section>
+				<!-- <section>
+					<h3>Variables</h3>
+					<img src="images/1*IiejRUFbks-TaOzJJvdoVw.jpeg" height="240px">
+					<p>
+						Nombre para una dirección de memoria
+					</p>
+					<footer>
+						<a href="https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239" target="_blank">
+							JavaScript’s Memory Model</a>
+					</footer>
+				</section> -->
+
+				<section>
+					<h3>Asignación</h3>
+					<pre><code data-trim class="JavaScript">
+
+						"use strict" // recomendado para tener que declarar las variables 
+
+						// Se asigna a la variable 'userName' el valor 'Pepe'
+						let userName = 'Pepe'    	// se acostumbra camelCase
+
+						// también
+						var userName = 'Pepe'   	// var  para global
+
+						// o
+						const id = '0as0039fj4k6ll' 	// constante, error si se reasigna
+
+						</ol>
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/variables" target="_blank">
+						Variables</a>
+					</footer>
+				</section>
+
+
+			</section>
+
+
+				<section>
+					<h2>Tipos</h2>
+					<img src="images/javascript-datatypes-01-splessons.jpg" height="460px">
+					<footer>
+						<a href="https://tutorial.techaltum.com/datatype-javascript.html" target="_blank">
+						Javascript Data Types</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Cadenas</h3>
+					<br>
+					<pre><code data-trim class="JavaScript">
+
+						let userName = 'López'       	// 'López' es el String literal
+
+						let userAdrress = "López'casa"  // o con dobles comilas
+
+						let userCome = '寿司' // o '\u58ff\u53f8' en Unicode
+
+						// Templates                          // con comillas hacia atrás
+						console.log(`${userName} vive en ${userAdrress}`)
+
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/string" target="_blank">
+						Strings</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Números</h3>
+				<p>
+					No hay tipo int, todos son float
+				</p>
+				<br>
+					<pre><code data-trim class="JavaScript">
+
+						let userEdad = 38     // number literal
+
+						let userAltura = 1.73
+
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/number" target="_blank">
+						Numbers</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Booleanos</h3>
+					<br>
+					<pre><code data-trim class="JavaScript">
+
+						let si_no = true // o false  boolean literal
+
+						if ('') { ... }  // se evalua a false
+
+						if (0) { ... }  // se evalua a false
+
+						if ([]) { ... }  // se evalua a false
+
+					</code></pre>
+					<footer>
+						<a href="https://guide.freecodecamp.org/javascript/falsy-values/" target="_blank">
+						Falsy values</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Undefined and null</h3>
+					<br>
+					<pre><code data-trim class="JavaScript">
+
+						let userName;              // undefined
+
+
+						let userSelected = null   // tipo null, valor null
+
+					</code></pre>
+					<footer>
+						<a href="https://blog.ajaymatharu.com/javascript-difference-between-undefined-and-null/" target="_blank">
+						Javascript Undefined vs NULL</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h3>Los Tipos son dinámicos</h3>
+					<p>
+						Las variables tienen el tipo de la última asignación
+					</p>
+					<br>
+					<pre><code data-trim class="JavaScript">
+
+						let userName = "Pepe"    // cadena
+
+						userName = 1            // ahora tipo número
+						                        // No hay casting en JavaScript
+
+					</code></pre>
+					<footer>
+						<a href="https://stackoverflow.com/questions/32476680/what-does-it-mean-that-javascript-is-dynamic" target="_blank">
+						What does it mean that JavaScript is “dynamic”?</a>
+					</footer>
+				</section>
+
+
+			<section>
+				<section>
+					<h3>Objetos</h3>
+					<p>
+						Agrupación indexada de propiedades
+					</p>
+					<br>
+					<pre><code data-trim class="JavaScript">
+
+						let user = {                    // literal
+							nombre: 'Pepe',             // propiedad 'nombre'
+							edad: 18,                   // propiedad 'edad'
+						}
+						                               // acceso a las propiedades		
+						console.log(user.nombre)       // con la notación punto
+
+						console.log(user['nombre'])   // con el operador de extracción
+
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/object" target="_blank">
+						Objects</a>
+					</footer>
+				</section>
+
+				<section>
+					<p>
+						los objetos son mutables
+					</p>
+					<pre><code data-trim class="JavaScript">
+
+						user.dni = '2342342323X'   // añado una propiedad
+
+						delete user.name           // borro una propiedad
+
+					</code></pre>
+				</section>
+
+			</section>
+			<section>
+				<section>
+					<h3>Listas</h3>
+					<p>
+						Listas son colecciones ordenadas
+					</p>
+					<pre><code data-trim class="JavaScript">
+
+						let listaUsuarios = ['Pepe', 'Juan']
+
+						console.log(listaUsuarios[0])   // index 0
+
+						console.log(typeof(listaUsuarios))    // es un objeto, tiene propiedades
+
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/array" target="_blank">
+						Arrays</a>
+					</footer>
+				</section>
+
+				<section>
+					<p>
+						las listas también son mutables
+					</p>
+					<pre><code data-trim class="JavaScript">
+
+						listaUsuarios[2] = 'Luís'
+
+						listaUsuarios.push('Rafa')
+
+					</code></pre>
+				</section>
+
+
+			</section>
+				<section>
+					<p>
+						Recorriendo listas o objetos
+					</p>
+				
+					<pre><code data-trim class="JavaScript">
+						// con el bucle for
+
+						let colors = ['red', 'green', 'blue']
+						for (const color of colors){
+							console.log(color)
+						}
+						
+						var obj = {
+							a: 1,
+							b: 2
+						}
+						for (const prop in obj) {
+								console.log("prop: " + prop + " value: " + obj[prop])
+							}
+					</code></pre>
+					<p>
+						porque son <a href="https://javascript.info/iterable" target="_blank">iterables</a>
+					</p>
+
+					<footer>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Funciones</h3>
+					<p>
+						Realizan tareas,
+					</p>
+					<pre><code data-trim class="JavaScript">
+
+						// declaración
+						function saludo(name) {
+							console.log('Hola, ' + name)
+						}
+
+						// Llamada
+						saludo('Pepe')   // 'Pepe' es el argumento
+
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/function-basics" target="_blank">
+						Functions</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Funciones</h3>
+					<p>
+						Calculan valores,
+					</p>
+					
+					<pre><code data-trim class="JavaScript">
+
+						// declaración
+						function cuadrado_de(número) {// número es una variable local a la función
+							return número * número
+						}
+
+						// Llamada
+						número = cuadrado_de(2)
+
+					</code></pre>
+					<footer>
+					</footer>
+				</section>
+
+
+				<section>
+					Las funciones son objetos,
+					<pre><code data-trim class="JavaScript">
+	
+						function cuadrado_de(número) { 
+							return número * número
+						}
+
+						const función_que_aplico = cuadrado_de
+
+						console.log(función_que_aplico(2)) 
+
+					</code></pre>
+					<br>
+					que se puede asignar a variables
+				
+
+					<footer>
+					</footer>
+				</section>
+
+				<section>
+					<p>que se pueden formar parte de otros objetos</p>
+					<pre><code data-trim class="JavaScript">
+						círculo = {
+							radio: 1
+							dibuja() {       // en lugar de dibuja: function() { ...}
+								console.log('llamada a dibuja')
+
+								// this para referirse a las propiedades de este objeto
+								console.log(`con radio ${this.radio}`) 
+						   	}
+						}
+						console.log(círculo.dibuja)
+
+					</code></pre>
+					<br>
+					<p>Entonces se llaman <strong>métodos</strong></p>
+
+					<footer>
+						<!-- <a href="https://www.youtube.com/watch?v=gvicrj31JOM" target="_blank">
+							JavaScript this Keyword</a> -->
+							<a href="https://javascript.info/object-methods#this-in-methods" target="_blank">
+								JavaScript this Keyword</a>
+						</footer>
+				</section>
+
+
+			<section>
+				<section>
+					<h3>Valor &nbsp; vs &nbsp; referencia </h3>
+					<br>
+					<pre><code data-trim class="JavaScript">
+						let a = 4
+						let b = a  //  se copia el valor
+
+						a = 5
+						console.log(b)  // 4
+						
+					</code></pre>
+					<p>
+						Los tipos primitivos se copian por valor
+					</p>
+					<footer>
+						<a href="https://www.youtube.com/watch?v=fD0t_DKREbE" target="_blank">
+						 Value vs reference</a>
+					</footer>
+				</section>
+				<section>
+					<h3>Valor &nbsp; vs &nbsp; referencia </h3>
+					<br>
+					<pre><code data-trim class="JavaScript">
+						let a = [1,2,3]
+						let b = a  //  se copia la referencia
+						console.log(b)  // [1,2,3]
+
+						a[0] = 5
+						console.log(b)  // [5,2,3]
+						
+					</code></pre>
+					<p>
+						Los tipos compuestos se copian por referencia
+					</p>
+					<footer>
+						<a href="https://www.youtube.com/watch?v=fD0t_DKREbE" target="_blank">
+						 Value vs reference</a>
+					</footer>
+				</section>
+			</section>
+				<!-- <section>
+					<img src="images/1*t1Jjp3moTD1KCA75Kd_PSA.png" height="260px">
+					
+					<br>
+					<pre><code data-trim class="JavaScript">
+						let x = {value:10 0}
+						let y = x            // se copia la referencia
+
+						x.value = 11
+				
+						y.value  // 11 
+						
+					</code></pre>
+					<p>
+						Los nombres de las variables son un puntero ahora
+					</p>
+					<footer>
+						<a href="https://codeburst.io/javascript-passing-by-value-vs-reference-explained-in-plain-english-8d00fd06a47c" target="_blank">
+							Javascript Passing by Value vs. Reference Explained in Plain English</a>
+					</footer>
+				</section> -->
+
+				<section>
+					<a href="https://javascript.info/document?map" target="_blank">
+					The JavaScript Language</a>
+				</section>
+
+
+
+
+				<!-- <section data-background="images/more-readable-js-without-vars-a9394ef3c296bcbf413fa82364020d78377b40a21fed7e7f8c5af05a76627f87.png">
+					<h3>JavaScript</h3>
+					<pre><code data-trim class="JavaScript" style="font-size:85%">
+					</code></pre>
+
+					<p><br></p>
+					<p><br></p>
+					<p><br></p>
+					<footer>
+						<a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps" target="_blank">
+						JavaScript First Steps</a>,
+						<a href=""></a>
+					</footer>
+				</section>
+
+				<section data-background="images/more-readable-js-without-vars-a9394ef3c296bcbf413fa82364020d78377b40a21fed7e7f8c5af05a76627f87.png">
+					<h3>ES6</h3>
+					<p><br></p>
+					<p><br></p>
+					<p><br></p>
+					<p><br></p>
+					<footer>
+						<a href="" target="_blank">
+						JavaScript First Steps</a>,
+						<a href="https://www.javascripttutorial.net/es6/">ES6 tutorial</a>
+					</footer>
+				</section>
+
+				<section data-background="images/more-readable-js-without-vars-a9394ef3c296bcbf413fa82364020d78377b40a21fed7e7f8c5af05a76627f87.png">
+					<h3>jQuery</h3>
+					<p><br></p>
+					<p><br></p>
+					<p><br></p>
+					<p><br></p>
+					<footer>
+						<a href="" target="_blank">
+						JavaScript First Steps</a>,
+						<a href="https://www.javascripttutorial.net/es6/">ES6 tutorial</a>
+					</footer>
+				</section>
+
+	<section>
+				<section>
+					<h3>Ajax</h3>
+				</section>
+				<section>
+					<h3>jQuery Ajax</h3>
+				</section>
+	</section> -->
+
+
+			</div>
+		</div>
+
+
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					// { src: 'plugin/markdown/markdown.js' },
+					// { src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

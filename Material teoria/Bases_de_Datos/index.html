@@ -1,0 +1,551 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Bases de Datos</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/tomorrow-night.css">
+
+		<style>
+			h1, h2, h3 {
+				color: Crimson !important;
+				padding-bottom: 0.25em !important;
+			}
+			p {
+  			 font-size: 90% !important;
+  			 text-align: left;
+			 padding-bottom: 0.2em !important;
+  		 }
+
+		 .orange {
+			 color: orange !important;
+		 }
+		 strong {
+		  color: turquoise;
+		 }
+
+		 th {
+  			color:white;
+  			background-color: palevioletred;
+  		 }
+
+		 ul {
+			 font-size: 75% !important;
+		 }
+		 li {
+			 padding-bottom: 0.75em !important;
+		 }
+
+		 footer {
+		  position: absolute !important;
+				bottom: -40px !important;
+				right: 1em !important;
+				font-size: 0.8em !important;
+	  }
+		</style>
+
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">Bases de Datos</h1>
+					<h3>Sistemas Software Basados en Web</h3>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao">José Ma. Guirao</a>
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					en el <a href="https://swad.ugr.es/?CrsCod=8934">swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h2>Bases de Datos</h2>
+					<img src="images/SQL.png"/>
+				</section>
+
+				<section>
+					<h2>SQL vs no-SQL</h2>
+					<br />
+					<img src="images/nosqlfunny.png" width="100%">
+					<br><br>
+					<footer>
+						<a href="https://www.xplenty.com/blog/the-sql-vs-nosql-difference/"
+						target="_blank">
+							SQL vs. NoSQL: How Are They Different and What Are the Best SQL and NoSQL Database Systems?
+						</a>
+					</footer>
+				</section>
+<section>
+				<section>
+					<h2>Bases de datos &nbsp;<a href="http://en.wikipedia.org/wiki/NoSQL" target="_blank">No-SQL</a></h2>
+					<p style="font-size:65%">
+						Son base de datos para permitir &nbsp; <code>'BIG DATA'</code>, &nbsp; tipos de datos
+						complejos, &nbsp; con otro tipo de  índices, &nbsp; distintas maneras de consulta, &nbsp;
+						escalabilidad, &nbsp; replicación, &nbsp; etc<br><br>
+			   	</p>
+
+					<table border="0" style="font-size:65%">
+					<colgroup>
+					<col width="50%">
+					<col width="50%">
+					</colgroup>
+					<thead valign="bottom">
+					<tr>
+					<th><strong style="color:white">SQL</strong></th>
+					<th><strong style="color:white">No-SQL</strong></th>
+					</tr>
+					</thead>
+					<tbody valign="top">
+					<tr>
+					<td><tt>Tablas</tt></td>
+					<td><tt>Hashes, &nbsp; listas</tt></td>
+					</tr>
+					<tr>
+					<td><tt>Datos estructurados, &nbsp; consistencia</tt></td>
+					<td><tt>Datos menos estructurados, &nbsp; dinamicidad</tt></td>
+					</tr>
+					<tr>
+					<td><tt>Escalabilidad vertical</tt></td>
+					<td><tt>Escalabilidad horizontal</tt></td>
+					</tr>
+					<tr>
+					<td><tt>Contabilidad, &nbsp; Facturación, &nbsp; Almacen, &nbsp; Personal, &nbsp; Tiendas on-line, &nbsp; etc</tt></td>
+					<td><tt>Documentos, &nbsp; Foros, &nbsp; Redes Sociales, &nbsp; Datos Distribuidos, &nbsp; etc</tt></td>
+					</tr>
+					<tr>
+					<td><tt></tt></td>
+					<td><tt></tt></td>
+					</tr>
+					</tbody>
+					</table>
+				</section>
+
+				<section>
+					<img src="images/nosolosql.jpg" height="540px">
+					<footer >
+						<a href="https://blog.pandorafms.org/nosql-databases-the-definitive-guide/"  target="_blank">
+		              NoSQL Databases: The Definitive Guide </a>
+
+						</footer>
+				</section>
+
+				<section>
+					<img src="images/NoSQL-database-table-1.jpg" height="540px">
+					<footer >
+						<a href="https://scalegrid.io/blog/2019-database-trends-sql-vs-nosql-top-databases-single-vs-multiple-database-use/"  target="_blank">
+                     2019 Database Trends</a>, &nbsp;
+										 <a href="https://www.eversql.com/most-popular-databases-in-2020/"  target="_blank">
+											Most popular databases in 2020</a>
+ 
+					</footer>
+				</section>
+
+
+				<section>
+					<img src="images/mongodb-nosql-database-4-1024.jpg" height="640px">
+				</section>
+</section>
+<section>
+				<section>
+				   <h3>Base de datos &nbsp; <a href="http://www.mongodb.org/" target="_blank">mongoDB</a></h3>
+
+				   <p>
+	      	     Es una base de datos, orientada a documentos <a href="http://bsonspec.org/" target="_blank">BSON</a>,
+			        que incluye información del tipo de dato
+					</p>
+					<p>
+				     Una <a href="http://docs.mongodb.org/manual/reference/glossary/#term-database" target="_blank">base de datos </a>está formada por
+				     <a href="http://docs.mongodb.org/manual/reference/glossary/#term-collection" target="_blank">colecciones</a>,
+			      	que son un conjunto de <a href="http://docs.mongodb.org/manual/core/document/" target="_blank">documentos</a>
+				   </p>
+					<img src="images/MongoDB Collection.jpg" />
+				</section>
+
+
+				<section>
+					<img src="images/SQL-MongoDB Correspondence.PNG" height="540px">
+				</section>
+
+				<section>
+					<h3>Documents</h3>
+					<img src="images/BSON-document.jpg" height="460px">
+					<br/>
+					<p>Siempre tienen un índice <strong>_id</strong> [autogenerado]</p>
+				</section>
+
+				<section>
+					<h3>Collections</h3>
+					<img src="images/1*I2kNmqyMc1KHdLWks5Ap1g.png" height="420px">
+					<br/>
+					<p>
+					No todos los documentos tienen que tener los mismos campos
+				</p>
+				</section>
+
+				<section>
+					<img src="images/mongo vs sql differences.png" height="420px">
+					<br/>
+					<p>
+					Admiten listas, lo que ahorra colecciones (tablas)
+				</p>
+				</section>
+
+
+				<section>
+				   <h3>Base de datos &nbsp; <a href="https://docs.mongodb.com/" target="_blank">mongoDB</a></h3>
+
+				    <br/><br />
+
+				   <a href="https://docs.mongodb.com/manual/crud/"  target="_blank">MongoDB CRUD Introduction</a>
+
+	             <br/><br />
+
+					 <a href="https://docs.mongodb.com/getting-started/python/"  target="_blank">
+						 Getting Started With MongoDB</a>
+
+					<br/><br />
+
+					<a href="https://www.tutorialspoint.com/mongodb/mongodb_overview.htm"  target="_blank">MongoDB Tutorial</a>
+					<br/><br />
+
+					<a href="http://www.diegocalvo.es/tutorial-de-mongodb-con-ejemplos/" target="_blank">
+						Tutorial de MongoDB con ejemplos</a>
+					<br/><br/>
+
+				</section>
+
+				<section>
+					<h3><a href="https://api.mongodb.com/python/current/" target="_blank">PyMongo</a></h3>
+					<pre><code data-trim class="python" style="font-size:80%">
+						import datetime
+						from pymongo import MongoClient
+						client = MongoClient('mongodb://localhost:27017/')
+
+						post = {"author": "Mike",
+						        "text": "My first blog post!",           # en SQL serian 2 tablas
+						        "tags": ["mongodb", "python", "pymongo"],
+						        "date": datetime.datetime.utcnow()}
+
+						db = client.test_database                        # base de datos
+						posts = db.posts                                 # colección
+						post_id = posts.insert(post)                     # documento
+
+						query = posts.find_one({"_id": post_id})         # consulta
+						query = posts.find_one({"author": "Mike"})
+
+						# Insertar otros datos (distintos)
+						new_posts = [{"author": "Mike",
+						              "text": "Another post!",
+						              "tags": ["bulk", "insert"],
+						              "date": datetime.datetime(2009, 11, 12, 11, 14)},
+						             {"author": "Eliot",
+						              "title": "MongoDB is fun",
+						              "text": "and pretty easy too!",
+						              "date": datetime.datetime(2009, 11, 10, 10, 45)}]
+						posts.insert(new_posts)
+
+						# Find devuelve un cursor iterable
+						for post in posts.find({"author": "Mike"}):
+						   print (post['text'])
+
+						# Otras querys
+						d = datetime.datetime(2009, 11, 12, 12)
+						posts.find({"date": {"$lt": d}}).sort("author")
+
+						# Creando índices para mayor rapidez (y tamaño de la BD)
+						from pymongo import ASCENDING, DESCENDING
+						posts.create_index([("date", DESCENDING), ("author", ASCENDING)])
+					</code></pre>
+					<br />
+					<footer>
+						<a href="https://pymongo.readthedocs.io/en/stable/tutorial.html" target="_blank">
+						Tutorial</a>
+
+					</footer>
+				</section>
+</section>
+<section>
+				<section>
+
+					<img src="images/persistence-of-objects-using-an-ORM-framework.png" width="80%"/> <br />
+					Django incluye un
+					<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/" target="_blank"> ORM</a> para acceder a la DB SQL <br />
+
+					<footer>
+					</footer>
+				</section>
+
+
+				<section>
+					<h2>Models</h3>
+					<p>
+						Para uso interno (sesiones, mensajes, etc) y para
+						los datos de la aplicación
+					</p>
+						models.py
+						<pre><code data-trim class="python" style="font-size:80%">
+							from django.db import models
+							class Restaurante(models.Model):
+				    	nombre    = models.CharField(max_length=30)
+				    	direccion = models.CharField(max_length=60)
+						</code></pre>
+						se transforma en
+						<pre><code data-trim class="sql" style="font-size:80%">
+							CREATE TABLE app_restaurantes_restaurante (
+					    	"id"        serial      NOT NULL PRIMARY KEY,
+					    	"nombre"    varchar(30) NOT NULL,
+					    	"direccion" varchar(60) NOT NULL
+								);
+						</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/" target="_blank">
+								Django Model</a>
+					</footer>
+				</section>
+
+				<section>
+					<h2>Models</h2>
+					<p class="left">
+						Se puede incluir restriciones, y relaciones entre tablas
+					</p>
+					<pre><code data-trim class="python" style="font-size:80%">
+						from django.db import models
+
+						class Restaurante (models.Model):
+							nombre    = models.CharField(max_length=30)
+							direccion = models.CharField(max_length=60)
+							email     = models.EmailField()
+
+						class Plato (models.Model):
+							restaurante = models.ForeingKey(Restaurante, on_delete=models.CASCADE)
+							nombre      = models.CharField(max_lenght=30)
+							precio      = models.DecimalField(max_digits=3, decimal_places=1)
+							foto        = models.ImageField(upload_to='profile_images', blank=True)
+						</code></pre>
+
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types" target="_blank">
+							Field types</a>
+						</footer>
+				</section>
+
+				<section>
+					<h2>Models</h2>
+
+					<p>
+						M&eacute;todos
+						<pre><code data-trim class="python" style="font-size:80%">
+							class Plato (models.Model):
+								restaurante = models.ForeingKey(Restaurante, on_delete=models.CASCADE)
+								nombre      = models.TextField()
+								precio      = models.DecimalField(max_digits=3, decimal_places=1)
+
+								def barato(self):
+									if self.precio &lt; 10:
+										return "barato"
+									else:
+										return "caro"
+
+				    	def __str__(self):      # Salida para imprimir el objeto
+				        		return self.nombre
+					  </code></pre>
+					  para tener loda la l&oacute;gica que se pueda en el modelo
+					</p>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#model-methods" target="_blank">
+							Models Method</a>
+						</footer>
+				</section>
+
+				<section>
+					<h2>Sobresritura</h2>
+					<pre><code data-trim class="python" style="font-size:80%">
+						from django.template.defaultfilters import slugify
+
+						class Restaurante(models.Model):
+							nombre    = models.CharField(max_length=30)
+							direccion = models.CharField(max_length=60)
+							email     = models.EmailField()
+							slug      = models.SlugField()   # SIN ESPACIOS EN BLANCO
+
+							def save(self, *args, **kwargs):
+								self.slug = slugify(self.nombre)
+								super(Restaurante, self).save(*args, **kwargs)
+					</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#overriding-predefined-model-methods" target="_blank">
+							Overriding predefined model methods
+						</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h2>Herencia</h2>
+						<pre><code data-trim class="python" style="font-size:80%">
+
+									class Restaurante(models.Model):
+										nombre    = models.CharField(max_length=30)
+										direccion = models.CharField(max_length=60)
+										email     = models.EmailField()
+										slug      = models.SlugField()   # SIN ESPACIOS EN BLANCO
+
+									class Asador(Restaurante):
+										carnes   = models.CharField()
+						</code></pre>
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#model-inheritance" target="_blank">
+								Model inheritance
+							</a>
+						</footer>
+					</section>
+
+					<section>
+						<h2>Consultas</h2>
+						<p>
+							SELECT
+						</p>
+						<pre><code data-trim class="python" style="font-size:80%">
+							# Se construye un 'consulta' a traves de un 'manejador' (objects)
+
+							todos   = Pelis.objects.all()
+
+							algunos = Pelis.objects.filter(title__startswith = 'The')
+
+							otros   = Pelis.objects.exclude(title__endswith('Granada').order_by(year)
+
+							# si es uno solo
+							peli = Pelis.objects.get(id=1)
+
+						</code></pre>
+
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/topics/db/queries/#making-queries"  target="_blank">
+								Making queries</a>, &nbsp;
+								 <a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#field-lookups" target="_blank">
+								Field lookups </a>
+						</footer>
+					</section>
+
+					<section>
+						<h2>Model</h2>
+						<p>Reglas: </p>
+							<ul style="margin-left:-10px;font-size:70%;list-style-type: none; width:110%">
+								<li>- Todas las clases extienden models.Model</li>
+								<li> &nbsp;</li>
+								<li> - No se guarda nada hasta en el disco &nbsp; <code>save()</code></li>
+								<li> &nbsp; </li>
+								<li> - Cada vez que se cambia el model hay que ejecutar <br />el script de migraci&oacute;n para
+								     actualizar las tablas</li>
+							</ul>
+					</section>
+
+
+				<section>
+					<h3>&nbsp; <a href="http://mongoengine.org/" target="_blank">Mongoengine</a></h3>
+
+					<pre><code data-trim class="python" data-noescape style="font-size:80%">
+						# Mongoengine
+						# <mark>Object Document Model</mark>
+
+						import datetime
+						from mongoengine import *
+
+						connect('mongoengine_test', host='localhost', port=27017)
+
+						class Post(Document):
+						    title     = StringField(required=True, max_length=200)
+						    content   = StringField(required=True)
+						    author    = StringField(required=True, max_length=50)
+						    tags      = ListField(StringField(max_length=30))
+						    published = DateTimeField(default=datetime.datetime.now)
+
+						post_1 = Post( title='Sample Post',
+							       content='Some engaging content',
+							       author='Scott',
+							       tags=['a', 'b']
+							      )
+						post_1.save()
+
+						post_1.title = 'A Better Post Title'
+						post_1.save()
+
+						for post in Post.objects:
+						    print(post.title)
+
+						for post in Post.objects(tags='mongodb'):
+							 print(post.title)
+
+					   post_1.delete()
+					</code></pre>
+					<br />
+					<footer>
+						<a href="http://docs.mongoengine.org/tutorial.html#getting-started" target="_blank">
+						Tutorial</a>, &nbsp;
+
+						<br />
+						<a href="https://realpython.com/blog/python/introduction-to-mongodb-and-python/" target="_blank">
+						Introduction to MongoDB and Python </a>, &nbsp;
+						<a href="https://leportella.com/english/2018/08/23/mongo-db-python-and-mongoengine.html" target="_blank">
+							Using MongoDB with Python and MongoEngine &lt; 3 </a>
+					</footer>
+				</section>
+</section>
+				<section>
+					<h3>Otras BD NO-SQL</h3>
+
+					<br />
+
+					<ul>
+						<li><a href="http://redis.io/" target="_blank">Redis</a>
+					   	<span style="color:gray;font-size:70%">&nbsp;(más simple y rápida, para cache y paso de 
+								mensajes en programación distribuida)</span><br><br>
+						</li>
+						<li><a href="https://www.elastic.co/" target="_blank">Elasticsearch</a>
+					   	<span style="color:gray;font-size:70%">&nbsp;(para motores de búsqueda y agregadores de logs)</span><br><br>
+						</li>
+						<li><a href="http://hadoop.apache.org/" target="_blank">Hadoop</a>
+					   	<span style="color:gray;font-size:70%">&nbsp;(big data)</span><br><br>
+						</li>
+					</ul>
+				</section>
+
+
+
+
+				<!-- <section data-markdown>
+					<textarea data-template>
+							Esto es data-markdown
+							* 1
+							* 2
+					</textarea>
+				</section> -->
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

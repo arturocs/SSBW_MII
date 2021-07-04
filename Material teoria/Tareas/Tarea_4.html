@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tarea 4</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-python.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-bash.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-markup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-yaml.min.js"></script>
+ 	<style>
+		body {
+			padding-top: 1em;
+		}
+		p {
+			padding-top: 0.5em;
+		}
+		h2, h3, h4, h5, h6 {
+			padding-bottom: 0.2em;
+			padding-top: 1em;
+		}
+		.grey {
+			color: grey;
+		}
+
+	</style>
+</head>
+<body>
+		<br>
+		<img src="https://fabianespinosa.github.io/OVIunadFabianEspinosa/images/crud1.png" alt="" 
+		style="height:340px;width:40%;margin-left:28%" />
+	<div class="container">
+		<h4>CRUD</h4>
+		<p>
+		Para esta tarea añadiremos una vista de detalle para cada excursión, así como la posibilidad
+		de añadir, borrar, y editar registros.
+		</p>
+
+		<p>
+		Antes completaremos la BD para poder incluir una imagen.
+		</p>
+
+		<p>
+		Para los formularios usar la clase prevista en <a href="https://docs.djangoproject.com/en/3.1/topics/forms/">django</a>,
+		para poder subir los archivos, el formulario sería:
+		<pre><code class="language-xml">&lt;form action=&quot;{% url &apos;añadir&apos; %}&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+	{% csrf_token %}
+	&lt;table&gt;
+		{{ form.as_table }}
+	&lt;/table&gt;
+	&lt;button type=&quot;submit&quot; class=&quot;btn btn-warning&quot;&gt;Añadir&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+		</p>
+		<p>
+			Los datos de vuelta del formulario están en <code>request.POST</code> y <code>request.FILES</code>, &nbsp;(
+				<a href="https://docs.djangoproject.com/en/3.1/topics/http/file-uploads/">File Upload en la documentación de Django</a>
+			) 
+		</p>
+	</div>
+	<br><br><br>
+</body>
+</html>
+

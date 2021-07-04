@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Formularios</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		pre {
+			width: 120% !important;
+			margin-left:-10% !important;
+			font-size: 90%;
+			line-height: 1.2 !important;
+			}
+		h2, h3 {
+			color: crimson !important;
+		}
+		.orange {
+			color: lightsalmon !important;
+		}
+		footer, .footer {
+			position: absolute;
+			bottom: 0 !important;
+			right: 0;
+			margin-bottom: -160px !important;
+		}
+		.embeded {
+			position: absolute;
+			width: 30%;
+			right: 0;
+			top: 0;
+			box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+			background-color: rgba(0, 0, 0, 0.9);
+			color: #fff;
+			padding: 20px;
+			font-size: 20px;
+			text-align: left;
+			margin-top: -300px;
+		}
+
+		strong, .strong {
+		 color: turquoise !important;
+		}
+		li {
+			padding-bottom: 20px;
+		}
+		p {
+			text-align: left;
+		}
+		ul {
+			margin-left: -20% !important;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">Formularios</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Formularios</h3>
+					<div style="float:left;padding-top:80px;height:300px;width:460px;">
+						Django incluye una clase <a href="https://docs.djangoproject.com/en/3.2/topics/forms/#building-a-form"
+						target="_blank">Forms</a>
+						para facilitar la entrada de datos desde
+						<a href="https://developer.mozilla.org/es/docs/Learn/HTML/Forms/Your_first_HTML_form"
+						   target="_blank">
+						   formularios html</a>
+					 </div>
+					<div>	 
+					 	<img src="images/form-sketch-low.jpg" class="cen"
+					 		 style="left:45%;top:220px;height:380px;width:360px;box-shadow: 0 0 0 0;">
+					 </div>
+					 
+					 <footer class="der">
+					 <a href="https://tutorial.djangogirls.org/es/django_forms/"  target="_blank">
+					 Tutorial</a>
+					 </footer>
+				</section>
+
+				<section>
+					<h3>Formularios</h3>
+					<p>
+						La clase incluye:
+					</p>
+					<br>
+					<ul style="font-size:85%">
+						<li> Generación del html en las plantillas<br><br></li>
+						<li> Validación en el servidor<br><br></li>
+						<li> Tratamiento de los errores<br><br></li>
+						<li> <a href="https://portswigger.net/web-security/csrf" target="_blank">Seguridad CSRF</></li>
+					</ul>
+					<footer class="der">
+					<a href="https://docs.djangoproject.com/en/3.2/topics/forms/" target="_blank">
+					Working with forms</a>
+					</footer>
+				</section>
+
+				<section>
+					<p>
+					Queremos hacer:
+					 
+				 	<form style="padding-left:24%">
+						<label for="tu_nombre">Tu nombre: </label> &nbsp;
+						<input id="tu_nombre" type="text" name="tu_nombre" placeholder="Tu nombre">
+						<input type="submit" value="OK">
+					 </form>
+					 </p>
+				 	<br>
+				 	<pre><code data-trim class="python">
+				&lt;form action="/formulario/" method="post"&gt;
+
+					&lt;label for="tu_nombre">Tu nombre:&lt;/label&gt; &nbsp;
+					&lt;input id="tu_nombre" type="text" name="tu_nombre" palceholder="Tu nombre"&gt;
+
+					&lt;input type="submit" value="OK"&gt;
+				&lt;/form&gt;
+					</code></pre>
+			    </section>
+				
+				<section>
+				 
+					<pre><code data-trim class="python">
+					# en forms.py
+					from django import forms
+				 
+					class NameForm (forms.Form):
+						tu_nombre = forms.CharField(label='Tu nombre', max_length=100)
+				 </code></pre>
+				 <br>
+
+				 <pre><code data-trim class="python">
+					# en formulario.html (templates)
+				 
+					&lt;form action="/formulario/" method="post"&gt;
+					   {% csrf_token %}  # token de seguridad
+					   {{ form }}
+					   &lt;input type="submit" value="Submit" /&gt;
+					 &lt;/form&gt;
+				 </code></pre>
+				 <footer class="der">
+				 <a href="https://docs.djangoproject.com/en/3.2/ref/forms/fields/" target="_blank">
+				 Forms fields</a>
+				 </footer>
+				 </section>
+								 
+				 <!-- <section>
+					<pre ><code data-trim class="python" style="font-size:80%">
+				 # en views.py
+				 from django.http import HttpResponseRedirect
+				 from django.shortcuts import render
+				 from .forms import NameForm
+				 
+				 # viene del url /formulario/
+				 def get_name(request):
+				 
+					 if request.method == 'POST':
+						 # creamos una instancia con los datos del request
+						 form = NameForm(request.POST)
+				 
+						 if form.is_valid():                # validamos
+							# procesamos los datos de form.cleaned_data
+							# nombre = form.cleaned_data.get('tu_nombre')
+						 ...
+							return HttpResponseRedirect('/gracias/')
+				 
+					 	else:
+						 form = NameForm()
+				 
+					 	# enviamos el formlario limpio,
+					 	# o con errorres si is_valid() == 'False'
+					 	return render(request, 'name.html', {'form': form})
+					</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/forms/#building-a-form-in-django" target="_blank">
+						   Building a form in Django</a>
+					</footer>	   
+				</section>
+				  -->
+
+
+				<section>
+					<h3>Constructor</h3>
+					<p>
+						Muy parecido al <code>model</code>
+					</p>
+					<pre><code data-trim class="python" target="_blank">
+			# miapp/forms.py
+			from django import forms
+
+			class FotoForm(forms.Form):
+				nombre       = forms.CharField(required=True, max_length=80)
+				subido_el    = DateField(widget=forms.SelectDateWidget)
+				likes_arriba = forms.IntegerField(widget=forms.NumberInput())
+				archivo      = forms.ImageField()
+				...
+		</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.2/ref/forms/fields/" target="_blank">
+							Forms fields </a>, &nbsp;
+						<a href="https://docs.djangoproject.com/en/3.2/ref/forms/widgets/" target="_blank">
+							Widgets</a>
+					</footer>
+				</section>
+
+				<section>
+					<p>
+					de hecho se pueden generar desde el model automáticamente
+				</p>
+					<pre><code data-trim class="python">
+		from django.forms import ModelForm
+		from .models import Foto
+
+		class FotoForm(ModelForm):
+			class Meta:
+			model = Foto
+			exclude = ('algún', 'campo', 'que_otro')
+		</code></pre>
+
+				</section>
+
+				<section>
+					<h3>Validación en el servidor</h3>
+					<p>
+						<br>
+				</p>
+					<pre><code data-trim class="python">
+		# miapp/forms.py
+		from django import forms
+		from django.core.validators import RegexValidator, FileExtensionValidator
+
+		class FotoForm(forms.Form):
+			nombre       = forms.CharField(validators=[RegexValidator('^a',
+				                          message="Que empieze por a")])
+			...
+			archivo    = forms.ImageField(validators=[FileExtensionValidator(
+			                            allowed_extensions=['jgp', 'png'])])
+         ...
+		</code></pre>
+
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.2/ref/validators/" target="_blank">
+							Validators</a>
+					</footer>
+				</section>
+
+				<section>
+						En el controlador
+					<pre><code data-trim class="python">
+	# miapp/views.py
+	from .forms import FotoForm
+
+	def Add(requests):
+		formu = FotoForm()
+
+		if request.method == "POST":
+			formu = FotoForm(data=requests.POST)
+
+			# valida o añade errores
+			if formu.is_valid():
+				# datos sueltos
+				# dato = formu.cleaned_data['dato']
+				formu.save()		# si está ligado al model
+				return redirect('donde_sea')
+
+		context = { 				# GET o error
+			'form': formu,
+		}
+
+		return render (request, 'template.html', context)
+</code></pre>
+				</section>
+
+				<section>
+					<p>
+						En los templates
+					</p>
+					<br/>
+					<pre><code data-trim class="language-html">
+
+	# miappp/añadir.html
+
+	{% extend 'base.html' %}
+
+	{% block contenido %}
+
+		&lt;form action="{% url 'add' %}" method="post"&gt;
+
+      		{% csrf_token %}
+			{{ form.as_p }}
+
+		&lt;/form&gt;
+
+	{% endblock %}
+	</code></pre>
+
+					<footer>
+					   <a href="https://docs.djangoproject.com/en/3.2/ref/csrf/" target="_blank">
+					   Cross Site Request Forgery protection </a>
+					</footer>
+				</section>
+
+				<section>
+					<br />
+					<p>
+              <a href="https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Forms" target="_blank">
+								Tutorial de Django Parte 9: Trabajo con formularios
+							</a>
+					</p>
+					<footer>
+					<a href="https://tutorial.djangogirls.org/es/django_forms/" target="_blank">
+					ejemplo más sencillo</a>
+
+					</footer>
+
+				</section>
+
+				<section>
+					<h2>Personalizando los forms</h2>
+
+					<br><br><p>
+					<a href="https://docs.djangoproject.com/en/3.2/ref/forms/widgets/" target="_blank">Widgets</a>, info para el html
+					<br><br>
+					<a href="https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html" target="_blank">
+					How to Render Django Form Manually</a>
+					<br>
+					<a href="https://simpleisbetterthancomplex.com/tutorial/2018/11/28/advanced-form-rendering-with-django-crispy-forms.html" target="_blank">
+					Advanced Form Rendering with Django Crispy Forms</a>
+				</p>
+
+				</section>
+
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

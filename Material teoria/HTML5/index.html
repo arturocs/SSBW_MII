@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>HTML5</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			pre {
+				width: 120% !important;
+				margin-left:-10% !important;
+				font-size: 90%;
+			}
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -100px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">HTML5</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+<section>
+				<section>
+					<p>
+					Hitos en el desarrollo del &nbsp; <a href="http://en.wikipedia.org/wiki/HTML" target="_blank">HTML</a>:
+					</p>
+					<br>
+					<ul style="font-size: 80%;">
+						<li><strong>HTML 1.0, (1991)&nbsp;</strong> &nbsp; en el CERN</li>
+
+						<li><strong>HTML 2.0, (1995)&nbsp;</strong> &nbsp; en los primeros navegadores</li>
+
+						<li><strong>HTML 3.2, (1997) &nbsp; </strong> &nbsp; ya incluyó formularios y tablas</li>
+
+						<li><strong>HTML 4.0, (1997) &nbsp; </strong> &nbsp; con CSS</li>
+
+						<li><strong>HTML 4.01, (1999) &nbsp; </strong> &nbsp; el que venimos usando</li>
+
+						<li><strong>XHTML 1.0, (2000) &nbsp; </strong></li>
+					</ul>
+
+					<footer>
+						<a href="http://evolutionofweb.appspot.com/" target="_blank">
+							Evolución de la web</a>
+					</footer>
+				</section>
+
+				<section>
+					<br />
+						<ul style="font-size: 80%;">
+							<li>&nbsp;<b>. . . &nbsp; </b> </li>
+							<li>&nbsp;<b>. . .  &nbsp; </b>&nbsp; plugins: flash player,
+								 &nbsp;java, <br /> &nbsp;javascript, &nbsp;silverlight, &nbsp;actionscript</li>
+							<li>&nbsp;<b>. . .  &nbsp; </b></li>
+							<li><strong>HTML5, (2011) &nbsp;</strong> &nbsp;una propuesta para unificar plugins</li>
+							<li><strong>HTML5, (2014)</strong> &nbsp; Primera versión</li>
+						</ul>
+
+						<footer>
+							<a href="http://en.wikipedia.org/wiki/HTML5" target="_blank">
+								HTML5</a>, &nbsp;
+								<a href="http://www.w3schools.com/html/html5_intro.asp" target="_blank">Intro</a> &nbsp; y &nbsp;
+								<a href="https://websitesetup.org/wp-content/uploads/2014/09/html5-cheat-sheet.png" target="_blank">Cheatsheet</a>
+						</footer>
+				</section>
+	</section>
+	<section>
+				<section>
+					<h2>Novedades del <strong>HTML5</strong></h2>
+					<br>
+					<p>
+						Nuevo parsing, no basado en <a href="http://www.hipertexto.info/documentos/sgml.htm" target="_blank">SGML</a>, 
+						que se dispara con <strong><code>&lt;!DOCTYPE html&gt;</code></strong>
+					</p>
+				</section>
+
+				<section>
+					<h2>Novedades del <strong>HTML5</strong></h2>
+
+					<ul style="font-size: 80%;">
+						<li> Elementos nuevos multimedia &nbsp; <strong><code>&lt;audio&gt;, &lt;video&gt; y &lt;canvas&gt; </code></strong></li>
+						<li> Elementos <i>semánticos</i> para especializar a <code>&nbsp;&lt;div&gt;&nbsp;</code>:
+							<strong>
+								<code>&nbsp;&lt;section&gt;&nbsp;</code>,
+								<code>&nbsp;&lt;article&gt;&nbsp;</code>, <code>&nbsp;&lt;header&gt;&nbsp;</code>,
+								<code>&nbsp;&lt;footer&gt;&nbsp;</code>, <code>&nbsp;&lt;nav&gt;&nbsp;</code>
+							</strong>
+						</li>
+						<li>Nuevos elementos para forms: <a href="https://www.jotform.com/blog/html5-datalists-what-you-need-to-know-78024/" target="_blank">
+						<code>&nbsp;&lt;datalist&gt;,&nbsp;</code></a> tipos
+				de entrada para campos: <strong><code> &nbsp; text, date, url, email, tel,  number, color, etc </code></strong>
+						</li>
+
+					</ul>
+
+					<footer>
+						<a href="https://developer.mozilla.org/es/docs/HTML/HTML5/HTML5_lista_elementos" target="_blank">
+						Lista de Elementos HTML5
+						</a>
+					</footer>
+				</section>
+
+				<section>
+					<h2>Novedades del <strong>HTML5</strong></h2>
+					<br>
+					<ul style="font-size: 80%;">
+
+						<li> Inclusión de <a href="https://www.w3schools.com/graphics/svg_intro.asp" target="_blank">&nbsp;SVG&nbsp;</a> y 
+							<a href="https://www.w3.org/Math/whatIsMathML.html" target="_blank">&nbsp;MATHML&nbsp;</a></li>
+
+						<li> Soporte para <a href="https://www.w3schools.com/html/html5_geolocation.asp" target="_blank">geolocalización</a></li>
+
+						<li> Soporte para <a href="https://www.w3schools.com/html/html5_draganddrop.asp" target="_blank">arrastrar y soltar</a></li>
+
+
+						<li>Soporte para almacenamiento local &nbsp; (<code>IndexDB</code>)</li>
+
+						<li>Mejoras en la comunicación con el servidor &nbsp; (<code>WebSocket</code>)</li>
+					</ul>
+
+					<footer>
+						<a href="https://developer.mozilla.org/es/docs/HTML/HTML5/HTML5_lista_elementos" target="_blank">
+						Lista de Elementos HTML5
+						</a>
+					</footer>
+				</section>
+	</section>
+
+<section>
+				<section>
+					<h2><strong>HTML4</strong> vs <strong>HTML5</strong></h2>
+
+					<img src="images/differences-between-html-and-html5.png" width="80%">
+
+					<footer>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" target="_blank">
+							y más</a>
+					</footer>
+				</section>
+				<section>
+					<h2>HTML<strong>4</strong></h2>
+
+					<pre><code data-trim class="markup">
+						&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+						&lt;html lang=&quot;en&quot;&gt;
+						  &lt;head&gt;
+							&lt;title&gt; HTML4 &lt;/title&gt;
+							&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+						
+							 &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;externalFile.css&quot;&gt;
+							 &lt;script src=&quot;js/scripts.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+						
+						  &lt;/head&gt;
+						  &lt;body&gt;
+						
+						  &lt;/body&gt;
+						&lt;/html&gt;						
+					</code></pre>
+				</section>
+				<section>
+					<h2>HTML<strong>5</strong></h2>
+					<pre><code data-trim class="markup">
+						&lt;!doctype html&gt;
+
+						&lt;html lang=&quot;en&quot;&gt;
+						&lt;head&gt;
+						  &lt;meta charset=&quot;utf-8&quot;&gt;
+						
+						  &lt;title&gt; HTML5 &lt;/title&gt;
+						
+						  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/styles.css&quot;&gt;
+						  &lt;script src=&quot;js/scripts.js&quot;&gt;&lt;/script&gt;
+						
+						&lt;/head&gt;
+						&lt;body&gt;
+						
+						&lt;/body&gt;
+						&lt;/html&gt;						
+					</code></pre>
+				</section>
+</section>
+				<section>
+					<h2>Soporte de HTML5</h2>
+
+					<br />
+
+					<div style="float:left; width:45%">
+						El soporte de HTML5 es todavía parcial<br /><br />
+						No todos los navegadores soportan todas las características
+					</div>
+
+					<img src="images/768px-HTML5_APIs_and_related_technologies_taxonomy_and_status.svg.png"
+						style="width:45%">
+					<footer>
+						<a href="http://html5test.com/" target="_blank">
+							HTML5 test</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h2>Twitter Bootstrap</h2>
+					<p>
+						Es una colección de plantillas de css y js originalmente usada en Twitter para:
+					</p>
+					<br>
+					<ul style="margin-left:-120px;font-size:80%">
+			
+						<li><strong>Responsive design</strong> (adaptación automática a móviles y tablets)</li>
+					
+						<li><strong>Grid System</strong>   (posicionar los elementos en la página)</li>
+					
+						<li><strong>Interface UI</strong> (forms, botones, menús, etc)</li>
+					</ul>
+					<br>
+				Pero hay más <a href="https://dev.to/theme_selection/best-css-frameworks-in-2020-1jjh">Fraemworks CSS</a>
+					
+					
+					
+					<footer class="der">
+					<a href="http://getbootstrap.com/" target="_blank">
+					Bootstrap</a>
+					</footer>
+				</section>
+					
+
+				<section>
+					<h2>Usando bootstrap</h2>
+
+					<ol style="font-size:90%">
+						<li>- &nbsp; Descargamos el código desde <a href="http://getbootstrap.com/" target="_blank">
+							Bootstrap</a> y lo descomprimimos,  o con <a href="https://www.npmjs.com/package/bootstrap" target="_blanak">npm</a>,
+							<br/> o lo usamos de un
+							<a href="http://getbootstrap.com/" target="_blank">Content Delivery Network</a>
+						</li>
+						<br>
+
+						<li>- &nbsp; Copiamos y pegamos el código mínimo desde
+							<a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/#starter-template" target="_blank">Basic template</a>
+							o desde <a href="https://getbootstrap.com/docs/5.0/examples/" target="_blank">ejemplos</a>
+						</li>
+						<br>
+						<li>- &nbsp; Hacemos el <a href="https://getbootstrap.com/docs/5.0/layout/grid/" target="_blank">grid system</a>,
+							y vamos añadiendo componentes tal como viene en la
+							<a href="https://getbootstrap.com/docs/5.0/components/accordion/" target="_blank">documentación</a>,
+						</li>
+					</ol>
+					
+
+					<footer>
+						<a href="http://www.w3schools.com/bootstrap4/" target="_blank">
+							Bootstrap tutorial</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Materialize</h3>
+					<br>
+					<p>
+					Una alternativa a bootstrap</p><br>
+					<p style="font-size:150%; margin-left:30%">
+					<strong><a href="https://materializecss.com/" target="_blank">Materialize</a></strong>
+					</p>
+					<footer class="der">
+					<a href="https://material.io/" target="_blank">
+					 Google Material</a> &nbsp; <a href="https://en.wikipedia.org/wiki/Material_Design" target="_blank">
+					   Design</a>
+					</footer>
+				 
+				 </section>
+				 
+
+
+
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

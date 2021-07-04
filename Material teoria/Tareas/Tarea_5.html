@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tarea 5</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-python.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-bash.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-markup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-yaml.min.js"></script>
+ 	<style>
+		body {
+			padding-top: 1em;
+		}
+		p {
+			padding-top: 0.5em;
+		}
+		h2, h3, h4, h5, h6 {
+			padding-bottom: 0.2em;
+			padding-top: 1em;
+		}
+		.grey {
+			color: grey;
+		}
+
+	</style>
+</head>
+<body>
+		<br>
+		<img src="https://managementmania.com/uploads/article_image/image/5587/authentication-software.PNG" alt="" 
+		style="height:220px;width:20%;margin-left:24%" />
+	<div class="container">
+		<h4>Autentificación, autorización y registro de eventos</h4>
+		<p>
+		 En esta tarea añadiremos la autenficación, autorización de los usuarios sobre la BD,
+		  y un registro de eventos en la aplicación.
+		</p>
+
+		<p>
+		 Django tiene un sistema de  <a href="https://docs.djangoproject.com/en/3.1/topics/auth/#user-authentication-in-django">
+		autentificación</a>, que es una de sus mayores ventajas. 
+		En <a href="https://learndjango.com/tutorials/django-login-and-logout-tutorial">Django Login and Logout Tutorial</a>,
+		tenemos un tutorial para usarlo. Alternativamente podremos instalar el plugin
+		<a href="https://django-allauth.readthedocs.io/en/latest/">django-allauth</a>, que añade autentificación delegada
+		en redes sociales (<a href="https://learndjango.com/tutorials/django-allauth-tutorial">allauth-tutorial</a>),
+		y del que se pueden encontrar <a href="https://github.com/rrmerugu/django-user-registration-bs4/tree/master/webapp/user_registration_bs4/templates">
+		templates</a> para bootstrap.
+		</p>
+
+		<p>
+			Concretamente hay que:
+			<ul>
+				<li> Añadir un enlace en el menú para hacer un login, o registro</li>
+				<li> En el caso de que el usario este autentificado, deberá aparecer el nombre de usuario y un enlace para el logout</li>
+				<li> Limitar la modificación de la BD a usuarios con la propiedad 
+					<a href="https://docs.djangoproject.com/en/3.1/ref/contrib/auth/#django.contrib.auth.models.User.is_staff">is_staff</a> </li>
+				<li> Poner a funcionar un <a href="https://docs.djangoproject.com/en/3.1/topics/logging/">logger</a> para 
+					el registro de eventos </li>
+				<li> Utilizar las <a href="https://docs.djangoproject.com/en/3.1/topics/signals/">signals</a> de django para 
+					registrar cuando alguién se logea o se deslogea
+				
+			</ul>
+		</p>
+
+		<h5>Logger</h5>
+		<p>
+			En <a href="https://lincolnloop.com/blog/django-logging-right-way/">Django Logging, The Right Way</a>, hay una introducción.
+			Una configuración del logger para que guarde en una archivo a partir de un nivel <code>INFO</code> sería:
+			<pre><code class="language-python"># al final de settings.py
+LOG_FILE = os.path.join(BASE_DIR, 'Server.log')
+
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+				
+	'formatters': {
+		'verbose': {
+			'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+									'datefmt': "%d/%b/%Y %H:%M:%S"
+							},
+		'simple': {
+			'format': '%(levelname)s [%(name)s:%(lineno)s] %(message)s'
+							},
+						},
+				
+	'handlers': {
+		'file': {
+			'level': 'INFO',
+			'class': 'logging.FileHandler',
+			'filename': os.path.join(BASE_DIR, LOG_FILE),
+			'formatter': 'verbose',
+			'mode': 'w'
+			},
+		'console': {
+			'level': 'DEBUG',
+			'class': 'logging.StreamHandler',
+			'formatter': 'simple'
+		}
+	},
+				
+	'loggers': {
+		'django': {
+			'handlers': ['file'],
+			'propagate': True,
+			'level': 'ERROR',
+		},
+		'': {
+				'handlers': ['file', 'console'],
+				'level': 'DEBUG',
+			}
+		}
+	}				
+			</code></pre>
+					</p>
+		<h5>Signals</h5>
+		<p>
+			Django tiene también un sistema de <a href="https://medium.com/@ksarthak4ever/django-signals-b20a4152a27b">signals</a>
+			para asociar eventos y acciones. Esto permite desacoplar el código cuando necesitiemos interaccionar entre distintas
+			partes de la aplicación. En <a href="https://medium.com/analytics-vidhya/how-to-track-user-activity-of-sign-in-and-out-d7720d58e283">
+				How to Track User Activity of Sign in and out</a> tenemos como usarlas para el caso de rastrear las entradas y salidas de usuarios.
+		</p>
+	</div>
+	<br><br><br>
+</body>
+</html>
+

@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>AJAX</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 ;
+				right: 0;
+				margin-bottom: -100px ;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+				width: 115% !important;
+			}
+			pre {
+				width: 110% !important;
+			}
+			code {
+				font-size: 110% !important;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">AJAX</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+	
+				<section>
+					<section>
+							<h3>AJAX</h3>
+							<p>
+							<a href="https://webdesign.tutsplus.com/tutorials/an-introduction-to-ajax-for-front-end-designers--cms-25099" target="_blank">Asynchronous JavaScript and XML</a>
+							</p>
+							<br>
+							<div>
+								<div  style="float:left; width:40%;">
+									<p>
+										Llamadas asíncronas al servidor para coger datos json o xml
+									</p>		
+								</div>
+								<div style="float:right;  width:50%;">
+									<img src="images/1*60iugGBHMF7PPSn-fdQrHQ.png" height="300px"/>
+								</div>
+							<div>
+						</section>
+		
+						<section>
+							<p>
+								Lo que permite cambiar partes de la página sin recargarla entera
+							</p>
+							<img src="images/ajax.png" height="480px"/>
+		
+						</section>
+					</section>	
+
+					<section>
+						<h3> AJAX </h3>
+						<br><br>
+						<p>
+							<a href="https://www.hostinger.com/tutorials/what-is-ajax" target="_blank">what is ajax</a>
+						</p>
+						<footer>
+							<a href="https://dzone.com/articles/pros-and-cons-of-ajax" target="_blank"> 
+								Pros and Cons of AJAX</a>
+						</footer>
+		
+					</section>
+		
+					
+			<section>
+				<h3>jQuery AJAX</h3>
+				<p>
+					<a href="http://api.jquery.com/load/" target="_blank">$.load()</a>
+				</p>
+				<p>
+					<a href="https://api.jquery.com/jquery.ajax/" target="_blank">$.ajax()</a>
+				</p>
+				<p>
+					<a href="http://api.jquery.com/jquery.get/" target="_blank">$.get()</a>
+				</p>
+				<p>
+					<a href="https://api.jquery.com/jquery.post/" target="_blank">$.post()</a>
+				</p>
+				<footer>
+					<a href="https://www.tutorialsteacher.com/jquery/jquery-ajax-method" target="_blank"> 
+						jQuery AJAX methods</a>
+				</footer>
+
+			</section>
+
+			<section>
+				<h3>AJAX es <a href="http://elmanantialdebits.blogspot.com.es/2013/08/que-es-eso-de-la-programacion-asincrona.html" target="_blank">
+		  asíncrono</a> </h3>
+			  Esto no funcionaría
+			  <pre><code class="javascript" data-trim style="font-size:85%;border-style:none;">
+&lt;script&gt;
+$(function(){    // jQuery
+  var response
+
+  $.get( "/get_dni", function (r) {  
+	  response = r
+  })
+
+  console.log(response) // undefined
+})
+&lt;/script&gt;
+				</pre></code>
+				<footer class="der">
+					<a href="https://learn.jquery.com/ajax/key-concepts" target="_blank">
+						Ajax, Key Concepts
+					</a>
+				</footer>
+			</section>
+
+			<section>
+				<h3> En el servidor</h3>
+				<pre><code class="prettyprint" style="font-size:85%;border-style:none;">
+from django.http import JsonResponse
+
+def responde(request):
+nombre = request.GET.get('nombre', '')
+data = {
+	'dni': Consulta_dni_de(nombre)
+	}
+return JsonResponse(data)    # podría ser string o HTML
+			  </code></pre>
+
+				<footer class="der">
+				<a href="https://data-flair.training/blogs/ajax-in-django/" target="_blank">
+				Un ejemplo
+				</a>
+				</footer>
+			</section>
+
+			<!-- <section>
+				<h3>ES6 <strong>fetch</strong></h3>
+				<pre><code data-trim class="javascript" style="font-size:85%" target="_blank">
+						// devuelve una promise
+fetch('http://example.com/movies.json')
+.then(response => {
+return response.json()  // podría ser .text(), etc
+})
+.then(myJson => {         // encadena otra promise
+console.log(myJson)
+})
+.catch(error => {
+  console.log(eror)
+})</code></pre>
+
+				<footer style="font-size: 50% !important">
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Using fetch </a>, <br />
+
+					<a href="https://stackoverflow.com/questions/38332701/fetch-vs-ajaxcall?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa" target="_blank">
+						Fetch vs. AjaxCall </a>, <br />
+
+						<a href="http://www.etnassoft.com/2016/10/10/estudiando-la-nueva-api-fetch-la-evolucion-natural-de-xhr-en-el-nuevo-javascript/" target="_blank">
+							Estudiando la API Fetch, la evolución natural de XHR en el nuevo Javascript</a>,
+
+				</footer>
+			</section>
+
+			<section>
+				<p>
+					<a href="https://codeburst.io/a-simple-guide-to-es6-promises-d71bacd2e13a" target="_blank">A Simple Guide to ES6 Promises</a>
+				</p>
+				<p>&nbsp;</p>
+				<p>
+					<a href="https://javascript.info/async" target="_blank">Promises, async/await</a>
+				</p>
+
+			</section>
+ -->
+
+
+			</div>
+		</div>
+
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

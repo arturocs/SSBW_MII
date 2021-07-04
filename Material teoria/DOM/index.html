@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>DOM</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 ;
+				right: 0;
+				margin-bottom: -100px ;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">DOM</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+			<section>
+				<section data-background="images/DOM-model.svg">
+
+					<footer style="position:absolute; bottom:-400px; left:-300px">
+						<a href="https://en.wikipedia.org/wiki/Document_Object_Model" target="_blank">
+							Document Object Model
+						</a>
+					</footer>
+				</section>
+
+				<section data-background-iframe="https://en.wikipedia.org/wiki/Document_Object_Model" data-background-interactive>
+				</section>
+			</section>
+
+				<section>
+					<h3>Nodos DOM</h3>
+					<p>
+						Los nodos están en una estructura de arbol invertido <br>
+						(los elementos tienen un solo padre, y hay uno encima del todo)
+					</p>
+					<p>
+						Los nodos, principalmente, son de dos tipos:
+						<br><br>
+						<ul style="margin-left:-30%">
+							<li>Tipo <strong>elemento</strong></li>
+							<li>Tipo <strong>texto</strong></li>
+						</ul>
+					</p>
+					<footer>
+						<a href="https://javascript.info/dom-nodes#an-example-of-the-dom" target="_blank">
+							An example of the dom
+						</a>
+					</footer>
+				</section>
+			<section>
+				<section>
+					<h3>Paseando por el DOM</h3>
+					<p>
+						A través de los métodos:
+					</p>
+						<ul style="margin-left:-50%;margin-top:5%">
+							<li>document.<strong>getElementById</strong>()</li>
+							<li>document.<strong>getElementsByClassName</strong>()</li>
+							<li>document.<strong>querySelector</strong>()</li>
+							
+						</ul>
+					</p>
+					<footer>
+						<a href="https://javascript.info/searching-elements-dom" target="_blank">
+							Searching the DOM
+						</a>
+					</footer>
+				</section>
+				<section>
+					<h3>Paseando por el DOM</h3>
+					<p>
+						Con las propiedades:
+					</p>
+						<ul style="margin-left:-50%;margin-top:5%">
+							<li>element.<strong>children</strong></li>
+							<li>element.<strong>parentElement</strong></li>
+							<li>element.<strong>nextElementSibiling</strong></li>
+							<li>. . .</li>							
+						</ul>
+					</p>
+					<footer>
+						<a href="https://javascript.info/dom-navigation#siblings-and-the-parent" target="_blank">
+							Walking the DOM
+						</a>
+					</footer>
+				</section>
+			</section>
+				<section>
+					<h3>manejando  el DOM</h3>
+					<p>
+						A través de sus propiedades y métodos:
+					</p>
+						<ul  style="margin-left:-50%;margin-top:5%">
+							<li>node.<a href="https://javascript.info/basic-dom-node-properties#innerhtml-the-contents" target="_blank">innerHTML</a></li>
+							<li>node.<a href="https://javascript.info/styles-and-classes#element-style" target="_blank">style</a></li>
+							<li>node.<a href="https://javascript.info/basic-dom-node-properties#the-hidden-property" target="_blank">hidden</a></li>
+							<li><code> ...</code></li>
+						</ul>
+					</p>
+					<footer> y también añadir, borrar
+						<a href="https://www.digitalocean.com/community/tutorials/how-to-make-changes-to-the-dom" target="_blank">
+							How to make changes to the dom
+						</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Añadiendo eventos</h3>
+					<p>
+						Asociando funciones a eventos:
+					</p>
+					<ul style="margin-left:-50%;margin-top:5%">
+						<li><strong>onclick</strong></li>
+						<li><strong>onchange</strong></li>
+						<li><strong>onmouseover</strong></li>
+						<li><strong> ...</strong></li>
+					</ul>
+
+					<footer>
+						<a href="https://www.w3schools.com/js/js_htmldom_events.asp" target="_blank">
+							javaScript DOM events
+						</a>
+					</footer>
+
+				</section>
+
+				<section>
+					<h3>jQuery</h3>
+					<p>
+						Más fácil todo esto con: &nbsp; 
+						<a href="https://jquery.com/" target="_blank">jQuery</a>
+					</p>
+					<footer>
+						<a href="https://trends.builtwith.com/javascript/jQuery" target="_blank">
+							jQuery Usage Statistics
+						</a>
+					</footer>
+				</section>
+
+				<section>
+					<a href="https://itnext.io/an-introduction-to-jquery-53d821e13153" target="_blank">An introduction to jQuery</a>
+				</section>
+	
+				<!-- <section>
+					<h3>AJAX</h3>
+					<a href="https://webdesign.tutsplus.com/tutorials/an-introduction-to-ajax-for-front-end-designers--cms-25099" target="_blank">Asynchronous JavaScript and XML</a>
+					<p>
+						Llamadas asíncronas al servidor, para coger datos json o xml
+					</p>
+					<img src="images/1*60iugGBHMF7PPSn-fdQrHQ.png" height="300px"/>
+			</section>
+
+			<section>
+				<h3>jQuery AJAX</h3>
+				<br>
+				<p>
+					<a href="http://api.jquery.com/load/" target="_blank">$.load()</a>
+				</p>
+				<p>
+					<a href="https://api.jquery.com/jquery.ajax/" target="_blank">$.ajax()</a>
+				</p>
+				<p>
+					<a href="http://api.jquery.com/jquery.get/" target="_blank">$.get()</a>
+				</p>
+				<p>
+					<a href="https://api.jquery.com/jquery.post/" target="_blank">$.post()</a>
+				</p>
+			</section>
+
+			<section>
+				<h3>AJAX es <a href="http://elmanantialdebits.blogspot.com.es/2013/08/que-es-eso-de-la-programacion-asincrona.html" target="_blank">
+		  asíncrono</a> </h3>
+			  Esto no funcionaría
+			  <pre><code class="javascript" style="font-size:85%;border-style:none;">
+&lt;script&gt;
+$(function(){    // jQuery
+  let response
+  $.get( "/get_dni", (r) => {  // arrow function
+	  response = r
+  })
+  console.log(response) // undefined
+})
+&lt;/script&gt;
+				</pre></code>
+				<footer class="der">
+					<a href="https://learn.jquery.com/ajax/key-concepts" target="_blank">
+						Ajax, Key Concepts
+					</a>
+				</footer>
+			</section>
+
+			<section>
+				<h3> En el servidor</h3>
+				<pre><code class="prettyprint" style="font-size:85%;border-style:none;">
+from django.http import JsonResponse
+
+def responde(request):
+nombre = request.GET.get('nombre', '')
+data = {
+	'dni': Consulta_dni_de(nombre)
+	}
+return JsonResponse(data)    # podría ser string o HTML
+			  </code></pre>
+
+				<footer class="der">
+				<a href="https://impythonist.wordpress.com/2015/06/16/django-with-ajax-a-modern-client-server-communication-practise/" target="_blank">
+				Un ejemplo
+				</a>
+				</footer>
+			</section>
+
+			<section>
+				<h3>ES6 <strong>fetch</strong></h3>
+				<pre><code data-trim class="javascript" style="font-size:85%" target="_blank">
+						// devuelve una promise
+fetch('http://example.com/movies.json')
+.then(response => {
+return response.json()  // podría ser .text(), etc
+})
+.then(myJson => {         // encadena otra promise
+console.log(myJson)
+})
+.catch(error => {
+  console.log(eror)
+})</code></pre>
+
+				<footer style="font-size: 50% !important">
+					<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Using fetch </a>, <br />
+
+					<a href="https://stackoverflow.com/questions/38332701/fetch-vs-ajaxcall?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa" target="_blank">
+						Fetch vs. AjaxCall </a>, <br />
+
+						<a href="http://www.etnassoft.com/2016/10/10/estudiando-la-nueva-api-fetch-la-evolucion-natural-de-xhr-en-el-nuevo-javascript/" target="_blank">
+							Estudiando la API Fetch, la evolución natural de XHR en el nuevo Javascript</a>,
+
+				</footer>
+			</section>
+
+			<section>
+				<p>
+					<a href="https://codeburst.io/a-simple-guide-to-es6-promises-d71bacd2e13a" target="_blank">A Simple Guide to ES6 Promises</a>
+				</p>
+				<p>&nbsp;</p>
+				<p>
+					<a href="https://javascript.info/async" target="_blank">Promises, async/await</a>
+				</p>
+
+			</section>
+
+ -->
+
+			</div>
+		</div>
+
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

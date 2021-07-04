@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Autentificación, Logging</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -120px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+				margin-left: -100px !important;
+			}
+			p {
+				text-align: left;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">Autentificación</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Autentificación en web requests</h3>
+					<br>
+					<p>Tres métodos:</p>
+				
+					<ul style="margin-left:-100px;font-size:85%">
+						<li><a href="https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Authorization"> Básica</a></li>
+						<li><a href="https://stackoverflow.com/questions/17769011/how-does-cookie-based-authentication-work"> Cookies </a></li>
+						<li><a href="https://stackoverflow.com/questions/1592534/what-is-token-based-authentication"> Tokens</a></li>
+					</ul>
+					<footer>
+						<a href="https://blog.risingstack.com/web-authentication-methods-explained/" target="_blank">
+							Web Authentication Methods Explained</a>
+					</footer>	
+				</section>
+
+				<section>
+					<h3>Autentificación</h3>
+					<p>
+						Django incopora casi todo lo necesario parala autentificación y registro de
+						usuarios con:
+					</p>
+					<br />
+						<ul style="margin-left:-20%; font-size:90%;list-style-type:none;">
+							<li> <a href="https://docs.djangoproject.com/en/3.1/topics/auth/default/#user-objects" target="_blank"> Modelo para usuarios</a></li>
+							<li><a href="https://docs.djangoproject.com/en/3.1/topics/auth/passwords/#password-management-in-django" target="_blank">Contraseñas</a></li>
+							<li><a href="https://docs.djangoproject.com/en/3.1/ref/contrib/auth/#group-model" target="_blank">Grupos de usuarios</a></li>
+							<li><a href="https://docs.djangoproject.com/en/3.1/topics/auth/default/#permissions-and-authorization" target="_blank">Permisos sobre las vistas y el modelo</a></li>
+						</ul>
+
+				<footer>
+				<a href="https://docs.djangoproject.com/en/3.1/topics/auth/#user-authentication-in-django"  target="_blank">
+				User authentication in Django</a>
+				</footer>
+				</section>
+<section>
+				<section>
+					<h3>Middleware</h3>
+					<br />
+					<table style="width:140%;margin-left:-6%;">
+						<tr>
+							<td valign="top"  style="width:40%">
+								<span style="position:relative; top:-300px">
+									Está implantado como <strong>middleware</strong>, unas
+									funciones añaden información al <b>request</b> interceptandolo antes
+									y después la aplicación
+								</span>
+							</td>
+							<td style="width:60%">
+								<img src="images/middleware_arrow.png" style="width:50%">
+							</td>
+						</tr>
+					</table>
+				</section>
+
+
+				<section>
+					<h2>Middleware</h2>
+					
+					<pre><code data-trim class="language-python" style="font-size:80%">
+				 				 
+				 # settings.py
+				 # -----------
+				 
+				 MIDDLEWARE = [
+					 'django.middleware.security.SecurityMiddleware',
+					 'django.contrib.sessions.middleware.SessionMiddleware'
+					 'django.middleware.common.CommonMiddleware',
+					 'django.middleware.csrf.CsrfViewMiddleware',
+					 'django.contrib.auth.middleware.AuthenticationMiddleware',
+					 'django.contrib.messages.middleware.MessageMiddleware',
+					 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+					 ]
+					</code></pre>
+					<footer class="der">
+					<a href="https://medium.com/@adamdonaghy/why-django-middleware-is-so-darn-cool-dd1b79a268ad" target="_blank">
+					Why Django Middleware is so darn cool</a>
+					</footer>
+				 </section>
+</section>
+
+				 <section>
+					<h3>Autentificación en el request</h3>
+					<br/>
+					<p>
+						E incluso tiene un
+						<a href="https://docs.djangoproject.com/en/3.1/topics/auth/default/#the-login-required-decorator" target="_blank">decorador</a>
+						para ponerlo en las vistas que requieran usuarios autenficados, que redirije automáticamente al formulario
+						de login
+					</p>
+					<footer class="der">
+						<a href="https://docs.djangoproject.com/en/3.1/topics/auth/default/#authentication-in-web-requests" target="_blank">
+							Authentication in Web requests</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Autentificación manual</h3>
+
+					<pre><code data-trim class="python" style="font-size:80%">
+						from django.shortcuts import render
+						from django.contrib.auth import authenticate, login
+
+						def login_view(request):	# no se puede llamar 'login'  !¡ !¡
+
+							context = {}
+							usuario   = request.POST.get ('username')
+							contraseña = request.POST.get ('password')
+
+							# Autenfificar, devuelve objeto usuario
+							user = authenticate (username=usuario, password=contraseña)
+
+							if user is not None and user.is_active:
+								login (request, user)
+								context['mensaje'] =  'Logeado como  <b>%s</b>' % (usuario)
+							else:
+								context['mensaje'] =  'No usuario  o contraseña incorrecta'
+
+							return render (request, 'login.html', context)
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>En las plantillas</h3>
+					<p>
+						Una vez autentificado, el objeto usuario está disponible en las plantillas:
+					</p>
+					<br />
+					<pre><code data-trim class="makr" style="font-size:80%">
+						&lt;ul&gt;
+							{% if user.is_authenticated %}
+
+								&lt;li&gt; Logeado como {{ user.username }}&lt;/li&gt;
+								&lt;li&gt;&lt;a href="{% url 'auth_logout' %}"&gt; Logout &lt;/a&gt;&lt;/li&gt;
+							{% else %}
+
+								&lt;li&gt;&lt;a href="{% url 'auth_login' %}"&gt; Login &lt;/a&gt;&lt;/li&gt;
+							{% endif %}
+						&lt;/ul&gt;
+				</code></pre>
+				</section>
+
+				<section>
+					<h3>Authentication Backend</h3>
+					<p>
+						Django proporciona un backend, que incluye todos los formularios y vistas necesarios
+						para el login, logout, registro, cambio de contraseña, etc, que se puede 
+						<a href="https://docs.djangoproject.com/en/3.1/topics/auth/customizing/" target="_blank">personalizar</a>,
+						por ejemplo <a href="https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#extending-the-existing-user-model"
+						target="_blank">extendiendo el user model</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Autorización</h2>
+					
+					<p>
+						De lectura/escritura sobre las clases del model de los gupos de usuarios
+					</p>
+					<footer class="der">
+					
+					<a href="https://docs.djangoproject.com/en/3.1/topics/auth/default/#permissions-and-authorization" target="_blank">
+						Permissions and Authorization
+				</a>
+				    </footer>
+				 
+				</section>
+
+				<section>
+					<h3></h3>
+					<a href="https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/" target="_blank">
+						Django Login/Logout Tutorial</a>
+				</section>
+
+				<section>
+					<h3>django allauth</h3>
+					<p>
+					<a href="http://django-allauth.readthedocs.org/en/latest/" target="_blank">django-allauth</a>
+					incluye autentificación delegada en redes sociales
+					</p>
+					<br>
+					
+					<ul style="margin-left:-300px;font-size:80%">
+						<li>
+							<a href="https://wsvincent.com/django-allauth-tutorial/" target="_blank">
+					 dajngo-allauth-tutorial</a>
+					    </li>
+                        <li>
+					 		<a href="https://github.com/pennersr/django-allauth/tree/master/allauth/templates" target="_blank">
+						 allauth templates</a>
+						</li>
+						<li>
+						 	<a href="https://github.com/rrmerugu/django-user-registration-bs4/tree/master/webapp/user_registration_bs4/templates" target="_blank">
+							 allauth templates bootstrap4</a>
+						</li>
+					</ul>
+					
+				</section>
+
+				<section>
+					<h3>Registro de eventos</h3>
+					<br>
+					<p>
+						Django tiene previsto el registro de eventos <a href="https://docs.djangoproject.com/en/3.1/topics/logging/"> logging</a> basado en 
+						el de python.
+					</p>
+					<br>
+					<p>
+						Para registro centralizado de aplicaciones grandes está
+						<a href="https://openwebinars.net/blog/que-es-elk-elasticsearch-logstash-y-kibana/" target="_blank">ELK</a>
+					</p>
+					<footer class="der">
+					
+						<a href="https://docs.djangoproject.com/en/3.1/topics/logging/" target="_blank">
+							Logging
+					</a>
+						</footer>
+				</section>
+
+				<section>
+					<h3>Signals</h3>
+					<p>
+					Django tiene un dispatcher de <a href="https://docs.djangoproject.com/en/3.1/topics/signals/" target="_blank">signals</a>
+					para comunicar unas partes con otras de la aplicación, que funciona con emisores y receptores que se subscriben
+					a los emisores
+					</p>
+					<footer class="der">
+					
+						<a href="https://stackabuse.com/using-django-signals-to-simplify-and-decouple-code/" target="_blank">
+							Using Django Signals to Simplify and Decouple Code
+					</a>
+						</footer>
+
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

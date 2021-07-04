@@ -1,0 +1,25 @@
+{% extends "../senderos_app/base.html" %}
+{% block content %}
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="jumbotron text-center p-1">
+      <h4 class="font-weight-bold">Iniciar sesión</h4>
+    </div>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
+        </tr>
+      </table>
+      <input type="submit" class="btn btn-primary" value="Iniciar sesión">
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="container titulo">
+    <h2 class="font-weight-bold">{{excursion.nombre}}<br><br></h2>
+</div>
+
+<div class="fotos">
+    {% load static %}
+    <img src="{% static excursion.fotos.0 %}" class="rounded mx-auto d-block w-50">
+
+    <div class="container ">
+        <div class="row align-items-center">
+
+            <div>
+                <div class="d-inline-flex p-2">
+                    {% for tag in excursion.tags %}
+                    #{{tag}}
+                    {% endfor %}
+                    <div class="container col ">
+                        <p class="likes">Likes {{ excursion.likes }}</p>
+                    </div>
+                    {% if user.is_staff %}
+                    <form name="delete" method="POST" action="{% url 'excursion' excursion.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="method" value="delete">
+                        <button class="btn btn-primary" type="submit">Borrar</button><br><br>
+                    </form>
+
+                    <button id="editar" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Editar
+                    </button><br><br>
+                </div>
+                <button id="boton_like" class="btn btn-primary" type="submit">
+                    👍
+                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel">Editar excursion</h5>
+                                </div>
+                                <form class="nueva-excursion" method="POST" enctype="multipart/form-data"
+                                    action="{% url 'editar' excursion.id %}">
+                                    <div class="modal-body">
+                                        {% csrf_token %}
+                                        <table>
+                                            {{ formulario }}
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="cerrar" type="button" class="btn btn-primary"
+                                            data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container descripcion">
+        <h5>{{ excursion.descripcion }}</h5>
+    </div>
+    <br><br>
+    <div class="container comentarios">
+        <h4 class="titulo font-weight-bold">Comentarios</h4>
+        {% for comentario in excursion.comentarios %}
+        <div class="container jumbotron comentario">
+            <h6 class="font-weight-bold row">{{ comentario.autor }}</h6>
+            <p class="row">{{ comentario.contenido }}</p>
+        </div>
+        {% endfor %}
+        <form class="nuevo-comentario jumbotron" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="method" value="comentario">
+            {{ comentario }}
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+    </div>
+</div>
+</div>
+<script>
+    $("#editar").click(() => { $("#modal").modal("show"); });
+    $("#boton_like").click(() => {
+        $.ajax({
+            url: "{% url 'like' excursion.id %}",
+            data: { 'like': true },
+            success: (respuesta) => {
+                $('#boton_like').html(respuesta);
+            }
+        })
+    })
+
+
+</script>
+
+{% endblock %}

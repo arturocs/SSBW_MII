@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>DAI Práctica 9 - Despliegue</title>
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-python.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-bash.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-yaml.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-docker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/components/prism-markup.min.js"></script>
+  <style>
+    p {
+       margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <br>
+	<img src="https://raw.githubusercontent.com/realpython/flask-deploy/master/images/localhost2.jpg" 
+	style="width:80%; height:360px ;" alt="">
+  <br><br>
+	<h3><br>
+      Despliegue en producción</h3>
+  
+  <p>
+    El último paso de una aplicación web consiste en desplegarla en un ambiente de 'producción',
+    es decir funcionando con la depuración en 'OFF', conectada
+    a un servidor web como <a href="https://www.nginx.com/">ngix</a> o <a href="http://httpd.apache.org/">apache</a> en
+    el puerto 80, y sirviendo el static desde el servidor web.
+    </p>
+    
+    <br><br>
+
+    <h4>docker-compose</h4>
+    
+    <p>
+       Hay  que ampliar <b>docker-compose.yml</b> para incluir un servicio más: el servidor web
+       <code>nginx</code> que se encargará de:
+       <ol>
+        <li>Servir los archivos del <b>static</b>, que  no tienen que  pasar por nuestra aplicación.</li>
+        <li>Recibir los requests de los clientes y pasarlos a la aplicación, actuando como 
+           <a href="https://es.wikipedia.org/wiki/Proxy_inverso"> proxy inverso</a>, y balanceo de
+           carga en su caso</li>
+        <li>Encargarse del cifrado del http, redirigiendo a https cuando sea apropiado</li>
+       </ol>
+    </p>
+    <p>
+    Lo primero es cambiar a  la configuración de producción. Esto se hace en django cambiando dos variables en el archivo
+    <b>settings.py</b>:
+    </p>
+    <pre class="language-python"><code class="anguage-python">DEBUG <span class="token operator">=</span> <span class="token boolean">False</span>
+ALLOWED_HOSTS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'*'</span><span class="token punctuation">]</span></code></pre>
+    <p>
+    
+    Con esto dejará de funciona el servidor de desarrollo, y de servir los contenidos de <b>/static</b>, que tendrán
+    que pasar a servirse desde el servidor web de producción. Django tiene un script:
+    <a href="https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/">collectstatic</a>
+    para facilitar pasar los contenidos a otro directorio.
+    </p>
+
+    <p>
+       También hay que substituir el servidor de desarrollo, <code>runserver</code> por el de producción, <a href="http://gunicorn.org/">gunicorn</a>,
+       que hay que instalar con pip. No viene en la instalación de Django.
+   </p>
+   <p>
+     Quedaría ampliar <b>docker-compose.yml</b> para incluir otro servicio, y conectarlos: 
+     <br><br>
+    <img src="https://storage.googleapis.com/zenn-user-upload/qwazyqc1ie3k2d4e7clgltckw7zx" />
+   </p>
+   <p>
+    <b>docker-compose.yml</b>:
+    <pre class="language-yaml"><code>version: '3.7'
+       services:
+          nginx:
+             image: nginx:alpine
+             ports:
+                - 80:80
+             # directorios para el archivo de configuración y archivos del static
+             volumes:
+                - ./conf:/etc/nginx/conf.d
+                - ./web/static:/var/www/static 
+             depends_on:
+                - web
+          web:
+             build: .
+             restart: always
+             command: gunicorn mi_sitio_web.wsgi:application --bind 0.0.0.0:8000
+             # command: python manage.py runserver 0.0.0.0:8000
+             volumes:
+               - ./web:/web
+
+          ...</code></pre>
+          Donde hemos creado una nueva carpeta <b>conf</b> para poner la configuración de nginx
+
+   </p>
+   <p>
+    El archivo configuración de <a href="http://nginx.org/en/docs/beginners_guide.html">nginx</a>: en &nbsp;<b>./conf/default</b>
+    <pre class="language-bash"><code>server {
+    listen 80 default_server;
+ 
+       # servidor web para archivos en  /static
+       location /static/ {
+             alias /var/www/static/;
+       }
+ 
+       # proxy inverso, se pasa a la aplicación wsgi
+       location / {
+            proxy_pass http://web:8000;
+            proxy_set_header X-Forwarded-Host $server_name;
+            proxy_set_header X-Real-IP $remote_addr;
+       }
+    }</code></pre>
+ </p>
+
+ <p>
+Los archivos html, css, y js del <code>front-end</code> se generan con 
+<pre class="language-bash"><code>$ yarn build </code></pre>
+y se ponen en el directorio <b>static</b> para que sean alcanzables desde <a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/">
+nginx</a>
+</p>
+
+ <br>
+</div>
+<br><br>
+</body></html>

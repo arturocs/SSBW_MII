@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tarea 6</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/prism.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-python.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-bash.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-markup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-yaml.min.js"></script>
+ 	<style>
+		body {
+			padding-top: 1em;
+		}
+		p {
+			padding-top: 0.5em;
+		}
+		h2, h3, h4, h5, h6 {
+			padding-bottom: 0.2em;
+			padding-top: 1em;
+		}
+		.grey {
+			color: grey;
+		}
+
+	</style>
+</head>
+<body>
+		<br>
+		<img src="https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2019/11/Working-example-of-REST-API-1.png" alt="" 
+		style="height:220px;width:25%;margin-left:35%" />
+	<div class="container">
+		<br>
+		<h4>REST API</h4>
+		<p>
+			En esta tarea añadiremos una <a href="https://www.redhat.com/es/topics/api/what-is-a-rest-api">API RESTFULL</a> a nuestra aplicación,
+			para poder conectar con ella con una <a href="https://medium.com/@programacionjje/que-es-spa-single-page-application-4dbd3694fac9">SPA</a> 
+			o desde una aplicación móvil.
+		</p>
+
+		<p>
+			Para ello utilizaremos la extensión <a href="https://www.django-rest-framework.org/">Django REST Framework</a>, que facilita la
+			tarea con una clase parecida a forms, <a href="https://www.django-rest-framework.org/api-guide/serializers/">serializers</a>,
+			que transforma los datos de objetos a/desde <b>JSON</b>. Tambien tiene 
+			<a href="https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views">ModelViewSets</a>, que conecta los
+			serializadores con el model, y <a href="https://www.django-rest-framework.org/api-guide/routers/">routers</a> que diregen
+			las peticiones a los viewsets. Podemos orientarnos por el <a href="https://www.django-rest-framework.org/tutorial/quickstart/">tutorial</a>
+			para hacer la apliación
+		</p>
+
+
+		<p>
+			Los <a href="https://searchapparchitecture.techtarget.com/definition/API-endpoint">endpoints</a> que habilitaremos serian:
+			<ul>
+				<li><code>/api/excursiones</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>GET</b> lista todas las excursiones</li>
+				<li><code>/api/excursiones</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>POST</b> añade una excursión</li>
+				<li><code>/api/excursion/&lt;id&gt;</code>&nbsp;&nbsp; <b>GET</b> detalle de una excursión</li>
+				<li><code>/api/excursion/&lt;id&gt;</code>&nbsp;&nbsp; <b>PUT</b> modifica  una excursión</li>
+				<li><code>/api/excursion/&lt;id&gt;</code>&nbsp;&nbsp; <b>DELETE</b> borra una excursión</li>
+
+			</ul>
+		</p>
+		<p>
+			Hay también que poner restricciones de acceso a la BD según los usuarios.
+			En <a href="https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html">
+				How to Use JWT Authentication with Django REST Framework</a>, cuentan como hacerlo
+		</p>
+
+	</div>
+	<br><br><br>
+</body>
+</html>
+

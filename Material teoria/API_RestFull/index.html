@@ -1,0 +1,498 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>APIs Restfull</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			h2, h3, h4 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -160px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+				width: 115% !important;
+			}
+			pre {
+				width: 110% !important;
+			}
+			code {
+				font-size: 110% !important;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">Apis RESTfull</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h4><strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface</h4>
+					<img src="images/como-crear-una-api.webp" width="80%" >
+					<footer>
+						<a href="https://www.youtube.com/watch?v=s7wmiS2mSXY"
+						target="_blank">
+						What is an API?</a>
+					</footer>
+				</section>
+
+				<!-- <section>
+					<h4>SOAP vs REST</h4>
+					<img src="images/diag1.jpg" alt="">
+				</section>
+
+				<section>
+					<h4>SOAP</h4>
+
+					<img src="images/Screen-Shot-2016-11-14-at-4.19.36-PM.png" alt="">
+				</section>
+
+				<section>
+					<h4>SOAP vs REST</h4>
+					<img src="images/soap-vs-rest.PNG" alt="">
+				</section>
+				<section>
+					<h3><strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer</h3>
+					<br/>
+				<p>
+					Desplazó a otros tipos de APIs (
+					<a href="https://www.w3schools.com/xml/xml_soap.asp" target="_blank">SOAP</a>, &nbsp;
+					<a href="https://www.w3schools.com/xml/xml_wsdl.asp" target="_blank">WSDL</a>)
+					por su simplicidad
+				 </p>
+				 <br/>
+				 <footer>
+					 <a href="https://crunchify.com/soap-vs-rest-simple-object-access-protocol-vs-representational-state-transfer/"
+					 target="_blank">
+						 SOAP vs REST: Simple Object Access Protocol Vs. REpresentational State Transfer</a>
+				 </footer>
+				</section>
+
+ -->
+				<section>
+					<h3><strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer</h3>
+					<br />
+					<p>
+						Este t&eacute;rmino se usa para referirse a interfaces simples, que solo usan
+						<strong><code>&nbsp;HTTP&nbsp;</code></strong> y <code>&nbsp;JSON o XML&nbsp;</code> en la respuesta
+					</p>
+					<p>
+						Se basan en una sintaxis universal para acceder a los recursos en internet: &nbsp;
+						las &nbsp; <a href="http://en.wikipedia.org/wiki/Uniform_resource_identifier" target="_blank">
+							<strong>U</strong>niform <strong>R</strong>esource <strong>I</strong>dentifier</a>
+					</p>
+
+					<footer>
+						<a href="https://www.youtube.com/watch?v=u2Ms34GE14U" target="_blank">
+							¿Qué son las APIs y para qué sirven?</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h3><strong>RE</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer</h3>
+					<br />
+    				<p>
+						Son APIs &nbsp;<strong>sin estado</strong>
+					</p>
+					<p>
+						la llamada (usualmente <b>GET</b>):
+					</p>
+					<pre><code data-trim class="markup">
+
+						http://servidor/api/recurso/id
+
+					</code></pre>
+					<p>
+						y la respuesta es <code>&nbsp;XML</code>, <code>&nbsp;JSON&nbsp;</code> o <code>&nbsp;HTML</code>
+					</p>
+					<footer>
+						<a href="http://www.w3schools.com/xml/default.asp" target="_blank">
+							XML</a>
+						&nbsp;&nbsp;
+						<a href="http://www.w3schools.com/js/js_json_intro.asp" target="_blank">
+							JSON</a>
+					</footer>
+				</section>
+<section>
+				<section>
+					<h3><strong>RE</strong><strong>S</strong><strong>T</strong>full</h3>
+					<br/>
+					<p style="line-height:200%">
+						Se usan los &nbsp;
+						<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" target="_blank">verbos de HTTP</a> &nbsp;
+						para las llamadas del cliente al servidor, asociadolos a operaciones &nbsp;
+						<a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete" target="_blank">CRUD</a>
+					</p>
+					<br />
+					<footer>
+						<a href="https://restfulapi.net/rest-architectural-constraints/" target="_blank">
+							REST Architectural Constraints</a>
+					</footer>
+				</section>
+
+				<section data-background="images/swagger-petstore-endpoint-methods.png">
+				</section>
+</section>
+
+				<section>
+					<h3><strong>RE</strong><strong>S</strong><strong>T</strong>full</h3>
+					<br />
+					<p style="line-height:200%">
+						Un servicio <strong>REST</strong>full, debe seguir 4 principios:
+						<br /><br />
+						<ul style="margin-left:-6%">
+							<li> Usar los verbos de HTTP explícitamente</li>
+							<li> Ser completamente sin estado</li>
+							<li> Usar URIs estilo path <span class="accl">(clean URLs)</span></li>
+							<li> Devolver XML o JSON</li>
+						</ul>
+					</p>
+
+					<footer>
+				</section>
+
+				<section>
+					<h4><strong>RE</strong><strong>S</strong><strong>T</strong>full</h4>
+
+					<p style="line-height:200%">
+						<b>Usar los verbos de HTTP explícitamente</b> con llamadas AJAX:
+						<br/>
+						<pre><code data-trim>
+
+							GET: para requerir un recurso (Read,  SELECT)
+
+							POST: para crear un recurso (Write, INSERT)
+
+							PUT: para cambiar el estado de  un recurso (Write, UPDATE)
+
+							DELETE: para borrar un recurso (DELETE)
+
+						</code></pre>
+					</p>
+				</section>
+
+				<section>
+					<h4><strong>RE</strong><strong>S</strong><strong>T</strong>full</h4>
+						<p style="line-height:200%">
+							<b>Usar los verbos de HTTP explícitamente</b>
+							<br/>
+							<pre><code data-trim>
+
+								# en lugar de:
+								GET /add_peli?title=Barbarella
+
+
+								# usamos:
+								POST /add_peli
+								...
+								title=Barbarella
+							</code></pre>
+						</p>
+				</section>
+
+				<section>
+					<h4><strong>RE</strong><strong>S</strong><strong>T</strong>full</h4>
+						<p style="line-height:200%">
+							<b>Usar los verbos de HTTP explícitamente</b>
+							<br/>
+							<pre><code data-trim>
+
+								# en lugar de:
+								GET /delete_peli?title=El bueno, el feo y el malo
+
+
+								# usamos:
+								DELETE /peli
+								...
+								title=El bueno, el feo y el malo
+							</code></pre>
+						</p>
+
+				</section>
+
+
+				<section>
+					<h4><strong>RE</strong><strong>S</strong><strong>T</strong>full</h4>
+
+					<p style="line-height:200%">
+						<b>Ser completamente sin estado</b>,
+						<br/>
+						para que el resultado de la llamada no dependa
+						de las anteriores (sea <strong>idempotente</strong>)
+						<br />
+						<pre><code data-trim>
+
+							# Con estado:
+							GET /resultados_busqueda?pag=pagina_siguente
+
+							# Sin estado:
+							GET /resultados_busqueda?pag=2
+						</code></pre>
+					</p>
+
+				</section>
+
+				<section>
+					<h3><strong>RE</strong><strong>S</strong><strong>T</strong>full</h3>
+					<p style="line-height:200%">
+						<b>Usar URIs estilo path</b>
+						<br/>
+						<pre><code data-trim>
+							# en lugar de:
+							GET /data_peli?title=El Gatopardo
+
+							# mejor:
+							GET /data_peli/El Gatopardo   # en realidad El%20Gatopardo
+						</code></pre>
+					</p>
+
+				</section>
+
+
+				<section>
+					<h4><strong>RE</strong><strong>S</strong><strong>T</strong>full</h4>
+
+					<p style="line-height:200%">
+						<b>Usar URIs estilo path</b>,
+					</p>
+					<p>
+						Que se puedan leer por humanos <a href="https://moz.com/beginners-guide-to-seo" target="_blank">(SEO)</a> y que muestren una jerquia
+					</p>
+					<br />
+					<pre><code data-trim>
+
+						GET /peli/El Gatopardo/date/
+
+						GET /peli/El Gatoardo/script/author
+
+					</code></pre>
+
+				</section>
+<section>
+				<section>
+					<h3><strong>D</strong>jango <strong>R</strong>EST <strong>F</strong>ramework</h3>
+					<br />
+					<p>
+					<a href="http://www.django-rest-framework.org/" target="_blank">DRF</a> es un plugin para django que añade la
+					funcionalidad para conectar una API REST con la Base de Datos
+				</p>
+				<p>
+					Utiliza <a href="https://docs.djangoproject.com/en/3.2/topics/class-based-views/generic-display/"
+					target="_blank">Built-in class-based generic views</a> para conectar el <code>model</code>
+					con <a href="https://www.django-rest-framework.org/api-guide/serializers/"
+					target="_blank">serializers</a>, una
+					clase muy parecida a <code>forms</code>
+				</p>
+
+
+			</section>
+
+			<section data-background="images/1*lAMsvtB6afHwTQYCNM1xvw.png">
+<br><br><br><br><br><br><br><br>
+<footer style="font-size: 50%">
+	<a href="https://www.paradigmadigital.com/dev/introduccion-django-rest-framework/" target="_blank">
+		https://www.paradigmadigital.com/dev/introduccion-django-rest-framework/</a>
+</footer>
+
+			</section>
+</section>
+<section>
+				<section>
+					<h3>Autentificación en APIS</h3>
+					<p>
+						Podemoos usar dos métodos para autentificar usuarios:
+					</p>
+
+					<p>
+						<dl>
+							<dt><strong>Cookies</strong></dt>
+							<dd>
+								Sincronizando cookies en el cliente y en el servidor, con sesiones
+							</dd>
+							<dt><strong>Tokens</strong></dt>
+							<dd>
+								Añadiendo un token en la cabecera del HTTP
+							</dd>
+						</dl>
+					</p>
+					<footer>
+						<a href="https://dzone.com/articles/cookies-vs-tokens-the-definitive-guide" target="_blank">
+						Cookies vs Tokens: The Definitive Guide
+					</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Cookies vs Tokens</h3>
+						<img src="images/auth.png" width="80%"/>
+					<footer>
+						<a href=""></a>
+					</footer>
+				</section>
+</section>
+				<section>
+					<h3><strong>S</strong>imple <strong>W</strong>eb<strong> T</strong>oken</h3>
+					<p>
+						Simplemente se añade una cabecera
+					</p>
+					<br />
+					<pre><code data-trim class="python" style="font-size:80%">
+
+						Authorization: Token asdf245adsfvasf2q45daf4123
+
+					</code></pre>
+					<br />
+					<footer>
+						<a href="http://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication" target="_blank">Token auth</a>
+					</footer>
+				</section>
+<section>
+
+				<section>
+					<h3><strong>J</strong>son<strong> W</strong>eb<strong> T</strong>oken</h3>
+					<p>
+						Está maś extendido (auth0, oauth2),
+					</p>
+					<br />
+					<pre><code data-trim>
+
+					Authorization: Bearer {token}
+
+					</code></pre>
+					<br>
+					<p>
+					permite 'reclamar' y 'firmar'
+				</p>
+					<br />
+					<footer>
+						<a href="https://jwt.io/" target="_blank">JWT</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3><strong>J</strong>son<strong> W</strong>eb<strong> T</strong>oken</h3>
+					<img src="images/jwt-example.png" width="80%"/>
+					<footer>
+						<a href=""></a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h3>Flujo</h3>
+						<img src="images/token_based_autenticaion.png" width="80%"/>
+					<footer>
+						<a href=""></a>
+					</footer>
+				</section>
+
+</section>
+
+				<section>
+					<h3>Pros y Cons</h3>
+						<img src="images/web-application-security-reloaded-for-the-html5-era-50-638.jpg" width="75%"/>
+					<footer>
+						<a href=""></a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Autentificación en Django DRF</h3>
+					<br />
+						<p>
+							<a href="http://www.django-rest-framework.org/api-guide/authentication/" target="_blank">Authentication</a>
+						</p>
+						<p>
+							<a href="https://simpleisbetterthancomplex.com/tutorial/2018/12/19/how-to-use-jwt-authentication-with-django-rest-framework.html" target="_blank">
+								How to Use JWT Authentication with Django REST Framework</a>
+						</p>
+						<br />
+						<!-- <p>
+							<a href="https://github.com/joshgeller/react-redux-jwt-auth-example" target="_blank">react-redux-jwt-auth-example</a>
+						</p>
+						<p>
+							<a href="https://auth0.com/blog/secure-your-react-and-redux-app-with-jwt-authentication/" target="_blank">Secure Your React and Redux App with JWT Authentication</a>
+						</p> -->
+					<footer>
+						<a href=""></a>
+					</footer>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

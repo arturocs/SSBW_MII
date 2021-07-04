@@ -1,0 +1,13 @@
+
+{% block content %}
+
+<div class="card col" id="excursion">
+	{% load static %}
+	<img src={% static excursion.fotos.0 %} class="card-img-top">
+	<div class="card-body">
+		<h4 class="card-title">{{ excursion.nombre }}</h4>
+		<div class="card-text">{{ excursion.descripcion }}</div>
+		<a href="/excursion/{{ excursion.id }}" class="btn btn-primary ">Ver ruta</a>
+	</div>
+</div>
+{% endblock %}

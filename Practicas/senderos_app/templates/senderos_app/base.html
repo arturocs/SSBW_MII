@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Rutas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+  <div class="autorizacion text-right m-1">
+    {% if user.is_authenticated %}
+    <p class="text-success font-weight-bold">¡Bienvenido {{ user.username }}!</p>
+    <a id="logout" type="button" class="btn btn-dark" href="{% url 'logout' %}">
+      Logout
+    </a>
+    {% else %}
+    <a id="login" type="button" class="btn btn-primary" href="{% url 'login' %}">
+      Login
+    </a>
+    <a id="signup" type="button" class="btn btn-primary" href="{% url 'signup' %}">
+      Sign Up
+    </a>
+    {% endif %}
+    <a id="modo_noche" class="btn btn-dark" href="#">Modo Noche</a>
+  </div>
+  </header>
+  <div id="header" class="jumbotron text-center">
+    <a href="/"><h1 class="font-weight-bold">Rutas</h1></a>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+
+</body>
+<script>
+  var dia = true
+  $(document).ready(() => {
+    $('#modo_noche').click(() => {
+      if (dia)  {
+        dia = false
+        $('#modo_noche').html('Modo Noche')
+        $('#header').removeClass("text-white bg-dark");
+        $('body').removeClass("text-white bg-dark");
+        $('div.card').removeClass("text-white bg-dark");
+        $('#modo_noche').removeClass('btn-light').addClass('btn-dark')
+      }
+      else {
+        dia = true
+        $('#modo_noche').html('Modo Día')
+        $('#header').addClass("text-white bg-dark");
+        $('body').addClass("text-white bg-dark");
+        $('div.card').addClass("text-white bg-dark");
+        $('#modo_noche').addClass('btn-light').removeClass('btn-dark')
+      }
+    })
+  })
+</script>
+
+</html>

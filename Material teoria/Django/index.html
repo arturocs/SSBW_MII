@@ -1,0 +1,759 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Django</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/tomorrow-night.css">
+
+		<style>
+			h1, h2, h3 {
+				color: Crimson !important;
+				padding-bottom: 0.25em !important;
+			}
+			p {
+  			 font-size: 90% !important;
+  			 text-align: left;
+			 padding-bottom: 0.2em !important;
+  		 }
+
+		 .orange {
+			 color: orange !important;
+		 }
+
+		 strong {
+		  color: turquoise;
+		 }
+
+		 th {
+  			color:white;
+  			background-color: palevioletred;
+  		 }
+
+		 ul {
+			 font-size: 75% !important;
+		 }
+		 li {
+			 padding-bottom: 0.75em !important;
+		 }
+
+		 footer {
+		  position: absolute !important;
+				bottom: -40px !important;
+				right: 1em !important;
+				font-size: 0.8em !important;
+	  }
+
+
+		</style>
+
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">DJANGO</h1>
+					<h3>Sistemas Software Basados en Web</h3>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao">José Ma. Guirao</a>
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+					en el <a href="https://swad.ugr.es/?CrsCod=8934">swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h2>DJANGO</h2>
+					<p>
+						Es el framework más usado en <a href="https://www.bestwebframeworks.com/web-frameworks-usage/#python" target="_blank">
+						python</a>, empezo a desarrollarse como herramienta para sitios de prensa en 2008
+					</p>
+					<p>
+						<a href="http://blog.teamtreehouse.com/choose-django" target="_blank">5 Reasons Why You Should Learn Django</a>, <br />
+						<a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html" target="_blank">
+							Why Django?</a>,<br>
+						<a href="https://medium.com/@cvarelaruiz/why-i-love-python-and-django-26596ce4d82e">
+							Why I love Python (and Django)?
+						</a>
+					</p>
+
+					<footer>
+						<a href="https://www.djangoproject.com/" target="_blank">django</a>, &nbsp;
+						<a href="https://djangopackages.org/categories/apps/" target="_blank">apps</a>
+
+					</footer>
+				</section>
+
+				<section>
+					<h2>Django vs Flask</h2>
+
+
+					<table border="0" style="font-size:50%">
+					<colgroup>
+					<col width="50%">
+					<col width="50%">
+					</colgroup>
+					<thead valign="bottom">
+					<tr>
+					<th><strong style="color:white">Flask</strong></th>
+					<th><strong style="color:white">Django</strong></th>
+					</tr>
+					</thead>
+					<tbody valign="top">
+					<tr>
+					<td><tt>MicroFamework (librería) 2 MB</tt></td>
+					<td><tt>Framework (librería + scripts) 7 MB</tt></td>
+					</tr>
+					<tr>
+					<td><tt>Más ligero y adaptable</tt></td>
+					<td><tt>Incluye ORM, autenficación de usuarios totalmente resuelta,
+					        interface de adminstración de la BD, etc</tt></td>
+					</tr>
+					<td><tt>Se hace menos código para empezar</tt></td>
+					<td><tt>Código ya hecho</tt></td>
+					</tr>
+					<tr>
+					<tr>
+					<td><tt>Programas en python</tt></td>
+					<td><tt>Programas en 'django'</tt></td>
+					</tr>
+					<tr>
+						<td><tt><a href="https://nickjanetakis.com/blog/15-useful-flask-extensions-and-libraries-that-i-use-in-every-project" target="_blank">Extensiones</a></tt></td>
+						<td><tt><a href="https://sunscrapers.com/blog/10-django-packages-you-should-know/" target="_blank">Packages</a></tt></td>
+					</tr>
+					<tr>
+					<td><a href="https://wakatime.com/blog/14-pirates-use-flask-the-navy-uses-django" target="_blank">Pirates use Flask, the Navy uses Django</a></td>
+					<td><a href="http://kracekumar.com/post/117948332935/simple-json-response-basic-test-between-flask-and" target="_blank">Aunque ...</a></td>
+					</tr>
+					</tbody>
+					</table>
+				</section>
+	<section>
+				<section>
+					<h3><strong>M</strong>odelo <strong>V</strong>ista <strong>C</strong>ontrolador</h3>
+	
+					<img src="images/mvc.png" class="cen" width="60%">
+					<footer><a href="https://www.youtube.com/watch?v=pCvZtjoRq1I" target="_blank">
+					What Is MVC? Simple Explanation</a></footer>
+				</section>
+
+
+
+				<section>
+					<h3><strong>M</strong>odelo <strong>V</strong>ista <strong>C</strong>ontrolador</h3>
+	
+					<img src="images/1*fdmEnFOCH8oDVo8mlQG2jg.jpeg" class="cen" width="60%">
+					<footer>
+					</footer>
+				</section>
+
+
+				<section>
+					<h2>En django &nbsp;<code> <strong>MVT</strong></code></h2>
+
+					<table>
+						<tr>
+							<td>
+								<ul style="margin-left:-2px;">
+									<li><strong>M</strong>odel&nbsp;
+										<span style="color:grey;font-size:80%;"><br>Interface con la BD <br>(mediante un ORM)</span></li>
+									<li><strong>V</strong>iew &nbsp;
+										<span style="color:grey;font-size:80%;margin-left:60px;"><br>
+											El programa  <br />
+											(lo equivalente a <br  /><i>Controler</i> en <b>MVC</b>)
+										</span></li>
+									<li><strong>T</strong>emplate</li>
+								</ul>
+							</td>
+							<td>
+								<img src="images/mvt.png">
+							</td>
+						</tr>
+			  	 	</table>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Enrutador</h3>
+					<img src="images/django_urls.jpg" />
+				
+				</section>
+		
+
+				<section>
+					<h3>Enrutador</h3>
+					<img src="images/1*bmpNidybiuF22EOg71wvPw.png" />				
+					<p>
+						En django un <strong>proyecto</strong> puede tener varias <strong>aplicaciones</strong>
+						compartiendo la BD
+					</p>
+				</section>
+
+				<section>
+					<h3>Enrutador</h3>
+					<p>
+						urls.py
+					</p>
+					<pre><code data-trim class="python" style="font-size:80%">
+	from django.urls import path
+	from . import views
+	
+	urlpatterns = [
+		path('excursion/todas/',              views.excursion_todas),
+		path('excursion/&lt;int:número&gt;/', views.excursion),
+		]</code></pre>
+					<p>
+						Mapea las urls en funciones en views.py
+					</p>
+				</section>
+			</section>
+	
+		<section>
+			<section>
+				<h3><strong>M</strong>odel </h3>
+				<br>
+				<ul>
+					<li>Interacción con la BD (SELECT, INSERT, UPDATE, DELETE)<br><br></li>
+					<li>Lógica relacionada con los datos (cuanta más mejor), p.e restricciones a los datos,
+						campos derivados, etc<br><br></li>
+					<li>Comunica con el controlador</li>
+				</ul>
+			</section>
+			<section>
+				<h3><strong>m</strong>odel</h3>
+				<p>
+					model.py
+				</p>
+				<pre><code data-trim class="python" style="font-size:80%">
+from django.db import models
+
+class Excursión(models.Model):
+	nombre      = models.CharField(max_length=100)
+	descripción = models.CharField(max_length=1000)
+	likes       = models.IntegerField(default=0)
+</code></pre>
+				<p>
+					con un <strong>ORM</strong>
+				</p>
+				<footer><a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank">
+					Object-relational mapping</a>
+				</footer>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h3><strong>V</strong>iews </h3>
+				<br>
+				<ul style="margin-left: -40%">
+					<li>Recibe la entrada del las vistas o urls (routing)<br><br></li>
+					<li>Procesa los requests (GET, POST, PUT, DELETE)<br><br></li>
+					<li>Interacciona con el modelo<br><br></li>
+					<li>Rellena y envia las plantillas
+				</ul>
+				<p>
+					Equivalente al <strong>Controler</strong> en <strong>MVC</strong>
+				</p>
+			</section>
+			<section>
+				<h3><strong>V</strong>iews</h3>
+				<p>
+					Controler <code>views.py</code>
+				</p>
+				<pre><code data-trim class="python" style="font-size:80%">
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+	return HttpResponse('Hola desde index')
+					
+def excursion(request, número):
+	detalle = Consulta_Model(excursion=número) 
+	context = {
+		'excursion': número, # se pasan las variables al template
+		'detalle': detalle
+	}
+	return render(request, "excursion.html", context)
+</code></pre>
+			</section>
+
+		</section>
+		<section>
+				<section>
+					<h3><strong>T</strong>emplates </h3>
+					<br>
+					<ul style="margin-left: -40%">
+						<li>Donde interacciona el usuario<br><br></li>
+						<li>Usualmente HTML, CSS y JavaScript<br><br></li>
+						<li>Comunica con el controlador<br><br></li>
+						<li>A traves de plantillas (<strong>templates</strong>)</li>
+				    </ul>
+					<p>
+						Equivalente al <strong>View</strong> en <strong>MVC</strong>
+					</p>
+					</section>
+			<section>
+				<h3><strong>T</strong>emplates</h3>
+				<pre><code data-trim class="html" style="font-size:80%">
+&lt;html&gt;
+	...
+	&lt;div&gt;
+		Excursión número {{ número }} &lt;br&gt;
+		{{ detalle }}
+
+	&lt;/div&gt;
+	...
+&lt;/html&gt;
+				</code></pre>					
+			</section>
+		</section>
+
+			<section>
+				<img src="images/basic-django.png" />
+				<br>
+				Flujo de datos &nbsp; &nbsp; <strong>M &nbsp; V &nbsp; T</strong>
+			</section>
+
+
+
+								<section>
+									<h2>MÓDULOS</h2>
+									<p>
+										django incluye:
+									</p>
+
+									<table style="font-size:80%">
+									<tr>
+									<td>
+									<ul>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#the-model-layer" target="_blank">Object Relational Mapper</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#the-admin" target="_blank">Interface de administración (CRUD)</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/topics/auth/" target="_blank">Autentificación</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/topics/auth/" target="_blank">Autorización</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/topics/http/sessions/" target="_blank">Sesiones</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#security" target="_blank">Seguridad</a></li>
+									</ul>
+									</td>
+									<td>
+									<ul>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#the-template-layer" target="_blank">Templates </a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#forms" target="_blank">Formularios</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/topics/cache/" target="_blank">
+									Cache</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#internationalization-and-localization" target="_blank">Localización,  Internacionalización</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/topics/email/#module-django.core.mail" target="_blank">E-mail</a></li>
+									<li> <a href="https://docs.djangoproject.com/en/3.0/#common-web-application-tools" target="_blank">...</a></li>
+									</ul>
+									</td>
+									</tr>
+									</table>
+									<footer class="der">
+										<a href="https://docs.djangoproject.com/en/3.0/" target="_blank">django documentation</a>
+									<a href="https://docs.djangoproject.com/en/3.0/intro/overview/" target="_blank">
+									django at glance</a>, &nbsp;
+									</footer>
+								</section>
+
+<section>
+				<section>
+					<h2>middleware</h2>
+					<table>
+						<tr>
+							<td>
+								<img src="images/middleware_arrow.png" />
+							</td>
+							<td>
+								<img src="images/middleware.png" />
+							</td>
+						</tr>
+					</table>
+					<br />
+						Parte del proceso se hace con &nbsp; <code>middleware</code>
+				</section>
+
+				<section>
+					<img src="images/mid.png.jpeg"/>
+					<p>
+						En su orden, van añadiendo información al <strong>request</strong>
+						y conformando la <sytrong>response</strong>
+					</p>
+				</section>
+</section>
+
+				<section>
+					<h2>Empezando</h2>
+					<p>Con los scripts, &nbsp; <b>django-admin.py</b> &nbsp; y &nbsp; <b>manage.py</b></p>
+					<pre style="font-size:40%"><code>
+
+> django-admin.py startproject mi_sitio_web  # Un proyecto puede tener varias apps
+
+
+> cd mi_sitio_web                            # Ha creado carpetas y subcarpetas
+
+
+> python manage.py startapp mi_app          # Una aplicación dentro del proyecto
+
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Scaffolding</h2>
+					<pre style="width:100%;font-size:40%">
+	<b>mi_sitio_web/</b>             # Proyecto
+	|
+	├── <b>rutas_granada</b>       # app
+	│   ├── admin.py              # admin para la BD de app
+	│   ├── apps.py               # conf de la app
+	│   ├── __init__.py           # este dir es un package
+	│   ├── migrations            # cambios hechos en la BD SQL
+	│   │   └── __init__.py
+	│   ├── models.py             # Modelo (clases del ORM)
+	│   ├── tests.py              # Tests
+	│   └── views.py              # Código (vista o controlador)
+	|
+	├── manage.py
+	|
+	└── <b>mi_sitio_web</b>
+	    ├── __init__.py
+	    ├── settings.py           # Settings  del proyecto
+	    ├── urls.py               # Mapeo de urls
+	    └── wsgi.py               # Conexión  con el servidor web de producción
+					</pre>
+
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/intro/tutorial01/" target="_blank">
+							Writing your first Django app</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<p style="font-size:60%">M&aacute;s archivos y carpetas, que conviene hacer</p>
+					<pre style="width:100%;font-size:40%">
+		<b>sitio_web/</b>
+		├── <b>rutas_granada</b>
+		│   ├── admin.py
+		│   ├── apps.py
+		│   ├── __init__.py
+		│   ├── migrations
+		│   │   └── __init__.py
+		│   ├── models.py
+		│   ├── tests.py
+		│   ├── <span style="color:lightgreen">urls.py</span>                # Mapeo para la app
+		│   └── views.py
+		|
+		├── manage.py
+		|
+		├── <b>mi_sitio_web</b>
+		│   ├── __init__.py
+		│   ├── settings.py
+		│   ├── urls.py
+		│   └── wsgi.py
+		|
+		└── <b style="color:lightgreen">static</b>                 # <a href="https://docs.djangoproject.com/en/3.0/howto/static-files/" target="_blank">Archivos static</a>
+		└── <b style="color:lightgreen">templates</b>              # Plantillas HTML (templates, vista)
+	             └── <span style="color:lightgreen">base.html</span>         # plantilla principal
+                           └──<span style="color:lightgreen"><b>visitas_granada</b></span>        # para cada aplicación
+                                └──<span style="color:lightgreen">index.html</span>
+					</pre>
+				</section>
+
+
+				<section>
+					<img src="images/django_request_response_cycle.png" height="660px"/>
+				</section>
+
+
+				<section>
+					<h3>Pasos para crear una aplicación</h3>
+					<table style="font-size:75%; padding:40px">
+						<tr>
+							<td style="padding-right: 2px">
+								<ul style="list-style-type: none;">
+									<li>1. &nbsp; Crear un proyecto </li>
+									<li>2. &nbsp; Crear una apliacación dentro
+									del proyecto</li>
+									<li>3. &nbsp; Poner la base de datos (SQL) y demás en <code>settings.py</code></li>
+									<li>4. &nbsp; Definir el modelo en <code>app/models.py</code></li>
+									<li>5.  &nbsp; Crear un superusuario (si se usa la app de admin)</li>
+								</ul>
+							</td>
+							<td>
+								<ul style="list-style-type: none">
+									<li>6. &nbsp; Añadir la app y demás cambios en <code>settings.py</code></li>
+									<li>7. &nbsp; Crear los mappings para los urls en <code>urls.py</code></li>
+									<li style="color:lightgreen">8. &nbsp; Codificar el controlador en <code>app/views.py</code> y el html
+										<code>templates</code></li>
+									<li>9. &nbsp; Aplicar tests	</li>
+									<li>10. &nbsp; Desplegar en el servidor web de producción</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+
+					<footer>
+						<a href="https://tutorial.djangogirls.org/en/" target="_blank">
+							Tutorial de Django Girls</a>
+						</footer>
+				</section>
+
+				<section>
+					<h3><strong>M</strong>odelo <strong>V</strong>ista <strong>C</strong>ontrolador</h3>
+					<img src="images/867519228d1d5325856fc61d710ded0e_XL.jpg" class="cen" style="height:350px">
+					<footer><a href="https://hackernoon.com/from-mvc-to-modern-web-frameworks-8067ec9dee65"
+						target="_blank">
+					From MVC to Modern Web Frameworks </a></footer>
+				</section>
+	
+<!--
+				<section>
+					<h2>Models</h3>
+					<p>
+						Djanjo tiene su <a href="http://www.tuprogramacion.com/glosario/que-es-un-orm/" target="_blank"> ORM</a> (sobre <strong>SQL</strong>) para uso interno y para
+						los datos de la aplicación
+					</p>
+						models.py
+						<pre><code data-trim class="python" style="font-size:60%">
+							from django.db import models
+							class Restaurante(models.Model):
+				    	nombre    = models.CharField(max_length=30)
+				    	direccion = models.CharField(max_length=60)
+						</code></pre>
+						se transforma en
+						<pre><code data-trim class="sql" style="font-size:60%">
+							CREATE TABLE app_restaurantes_restaurante (
+					    	"id"        serial      NOT NULL PRIMARY KEY,
+					    	"nombre"    varchar(30) NOT NULL,
+					    	"direccion" varchar(60) NOT NULL
+								);
+						</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/" target="_blank">
+								Django Model</a>
+					</footer>
+				</section>
+
+				<section>
+					<h2>Models</h2>
+					<p class="left">
+						Otro ejemplo con restriciones, y relación de uno a muchos
+					</p>
+					<pre><code data-trim class="python" style="font-size:60%">
+						from django.db import models
+
+						class Restaurante (models.Model):
+							nombre    = models.CharField(max_length=30)
+							direccion = models.CharField(max_length=60)
+							email     = models.EmailField()
+
+						class Plato (models.Model):
+							restaurante = models.ForeingKey(Restaurante, on_delete=models.CASCADE)
+							nombre      = models.CharField(max_lenght=30)
+							precio      = models.DecimalField(max_digits=3, decimal_places=1)
+							foto        = models.ImageField(upload_to='profile_images', blank=True)
+						</code></pre>
+
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types" target="_blank">
+							Field types</a>
+						</footer>
+				</section>
+
+				<section>
+					<h2>Models</h2>
+
+					<p>
+						M&eacute;todos
+						<pre><code data-trim class="python" style="font-size:60%">
+							class Plato (models.Model):
+								restaurante = models.ForeingKey(Restaurante, on_delete=models.CASCADE)
+								nombre      = models.TextField()
+								precio      = models.DecimalField(max_digits=3, decimal_places=1)
+
+								def barato(self):
+									if self.precio &lt; 10:
+										return "barato"
+									else:
+										return "caro"
+
+				    	def __str__(self):      # Salida para imprimir el objeto
+				        		return self.nombre
+					  </code></pre>
+					  para tener loda la l&oacute;gica que se pueda en el modelo
+					</p>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#model-methods" target="_blank">
+							Models Method</a>
+						</footer>
+				</section>
+
+				<section>
+					<h2>Sobresritura</h2>
+					<pre><code data-trim class="python" style="font-size:60%">
+						from django.template.defaultfilters import slugify
+
+						class Restaurante(models.Model):
+							nombre    = models.CharField(max_length=30)
+							direccion = models.CharField(max_length=60)
+							email     = models.EmailField()
+							slug      = models.SlugField()   # SIN ESPACIOS EN BLANCO
+
+							def save(self, *args, **kwargs):
+								self.slug = slugify(self.nombre)
+								super(Restaurante, self).save(*args, **kwargs)
+					</code></pre>
+					<footer>
+						<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#overriding-predefined-model-methods" target="_blank">
+							Overriding predefined model methods
+						</a>
+					</footer>
+				</section>
+
+
+				<section>
+					<h2>Herencia</h2>
+						<pre><code data-trim class="python" style="font-size:60%">
+
+									class Restaurante(models.Model):
+										nombre    = models.CharField(max_length=30)
+										direccion = models.CharField(max_length=60)
+										email     = models.EmailField()
+										slug      = models.SlugField()   # SIN ESPACIOS EN BLANCO
+
+									class Asador(Restaurante):
+										carnes   = models.CharField()
+						</code></pre>
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/topics/db/models/#model-inheritance" target="_blank">
+								Model inheritance
+							</a>
+						</footer>
+					</section>
+
+					<section>
+						<h2>Consultas</h2>
+						<p>
+							SELECT
+						</p>
+						<pre><code data-trim class="python" style="font-size:60%">
+							# Se construye un 'consulta' a traves de un 'manejador' (objects)
+
+							todos   = Pelis.objects.all()
+
+							algunos = Pelis.objects.filter(title__startswith = 'The')
+
+							otros   = Pelis.objects.exclude(title__endswith('Granada').order_by(year)
+
+							# si es uno solo
+							peli = Pelis.objects.get(id=1)
+
+						</code></pre>
+
+						<footer>
+							<a href="https://docs.djangoproject.com/en/3.0/topics/db/queries/#making-queries"  target="_blank">
+								Making queries</a>, &nbsp;
+								 <a href="https://docs.djangoproject.com/en/3.0/ref/models/querysets/#field-lookups" target="_blank">
+								Field lookups </a>
+						</footer>
+					</section>
+
+					<section>
+						<h2>Model</h2>
+						<p>Reglas</p>
+							<ul style="left-margin:-180px;font-size:70%;list-style-type: none; width:110%">
+								<li>Todas las clases extienden models.Model</li>
+								<li> &nbsp;</li>
+								<li> No se guarda nada hasta &nbsp; <code>save()</code></li>
+								<li> &nbsp; </li>
+								<li> Cada vez que se cambia el model hay que ejecutar <br />el script de migraci&oacute;n para
+								     actualizar las tablas</li>
+							</ul>
+					</section>
+
+					<section>
+						 <h2>Con &nbsp; <a href="http://mongoengine.org/" target="_blank">Mongoengine</a></h2>
+						 <p>
+						  Mongoengine es muy parecido al ORM de Django
+					 	</p>
+
+						   <pre><code data-trim class="python" style="font-size:60%">
+								# restaurantes/models.py
+								from mongoengine import *
+								import datetime
+
+								connect('test')
+
+								class addr(EmbeddedDocument):
+								    building = StringField()
+								    street   = StringField()
+								    city     = StringField()
+								    zipcode  = IntField()
+								    coord    = GeoPointField()
+
+								class likes(EmbeddedDocument):
+								    grade = StringField(max_length=1)
+								    score = IntField()
+								    date  = DateTimeField()
+
+								class restaurants(Document):
+								    name             = StringField(required=True, max_length=80)
+								    restaurant_id    = IntField()
+								    cuisine          = StringField()
+								    borough          = StringField()
+								    address          = EmbeddedDocumentField(addr)
+								    grades           = ListField(EmbeddedDocumentField(likes))
+							</code></pre>
+							<br />
+							<footer>
+								<a href="https://www.slideshare.net/raakeshkum/pycon-presentation"  target="_blank">
+								Django with MongoDB using MongoEngine </a> &nbsp;
+							</footer>
+					</section> -->
+
+					<section>
+						<h3><a href="http://www.django-introduction.com/index.en.html#/" target="_blank">Más transparencias</a></h3>
+						<br /><br />
+						<h3><a href="https://simpleisbetterthancomplex.com/series/beginners-guide/1.11/" target="_blank">
+						A Complete Beginner's Guide to Django</a></h3>
+					</section>
+
+
+
+
+
+
+				<!-- <section data-markdown>
+					<textarea data-template>
+							Esto es data-markdown
+							* 1
+							* 2
+					</textarea>
+				</section> -->
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,693 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>ES6 / Node</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-dark.css">
+
+
+		<!-- Printing and PDF exports -->
+		<!-- <script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script> -->
+		<style>
+			h2, h3 {
+				color: crimson !important;
+			}
+			.orange {
+				color: lightsalmon !important;
+			}
+			footer, .footer {
+				position: absolute;
+				bottom: 0 !important;
+				right: 0;
+				margin-bottom: -100px !important;
+			}
+			.embeded {
+				position: absolute;
+				width: 30%;
+				right: 0;
+				top: 0;
+				box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.9);
+				color: #fff;
+				padding: 20px;
+				font-size: 20px;
+				text-align: left;
+				margin-top: -300px;
+			}
+
+			strong, .strong {
+		 		color: turquoise !important;
+			}
+			li {
+				padding-bottom: 20px;
+			}
+			p {
+				text-align: left;
+				margin-left: -10% !important;
+				width: 120% !important;
+			}
+			pre {
+				width: 120% !important;
+				margin-left: -10% !important;
+				padding-top: 15px !important;
+				padding-bottom: 15px !important;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section data-background="images/webdevelop.jpeg">
+					<h1 class="orange">ES6 / Node</h1>
+					<h2>S S B W</h2>
+					<p>
+						<small><a href="http://www.ugr.es/~jmguirao" target="_blank">José Ma. Guirao</a> /
+							<a href="mailto://jmguirao@ugr.es">jmguirao@ugr.es</a></small>
+					</p>
+					<footer>
+						<a href="https://swad.ugr.es/?CrsCod=8934" target="_blank"> en el swad</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>ES6 </h3>
+					<br>
+					<p>
+						Seguimos <a href="https://www.youtube.com/watch?v=NCwa_xi0Uuc" target="_blank">
+							JavaScript for React Developers | Mosh</a>
+					</p>
+				</section>
+
+				
+				<section>
+					<h3>JavaScript &nbsp; &#x21e8; &nbsp; ES6</h3>
+					<img src="images/ecmascript2015-senchacon-img2.png" height="420px">
+					<footer>
+						<a href="https://www.w3schools.com/js/js_es6.asp" target="_blank"> ES6</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Vamos a ver</h3>
+					</h3>
+					<img src="images/sc1.png" height="420px">
+					<footer>
+						<a href="https://carlosazaustre.es/ecmascript6" target="_blank">
+							 En 5 minutos</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Alcance de las variables</h3>
+					<pre><code data-trim class="JavaScript">
+
+window.a = 7 // global scope visible en todos los módulos
+
+var a = 8    // function scope
+
+	{
+		let a = 8  // block scope
+	}
+	
+const a = 6    // error si se reasignan
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/variables" target="_blank">
+							 variables</a>
+					</footer>
+				</section>
+
+				<section>
+					<h3>Objetos</h3>
+					<pre><code data-trim class="JavaScript">
+const ob = {
+	a: 6,            	// propiedad
+	"b": 'hola',    
+	function c() {},        // método
+	d() {},                // método ES6
+}
+
+ob.a       // con punto
+ob['b']    // con paréntesis
+
+let variable = 'b'; ob[variable]
+				</code></pre>
+					<footer>
+						<a href="https://javascript.info/object" target="_blank">
+							 object</a>
+					</footer>
+				</section>
+			<section>
+				<section>
+					<h3>this</h3>
+					<p>Referencia al objeto</p>
+					<pre><code data-trim class="JavaScript">
+const pepe = {
+	nombre: 'Pepe',
+	saluda() {
+		console.log('Soy ', this.nombre)
+	}
+}
+
+pepe.saluda() // Soy Pepe
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/object-methods" target="_blank">
+									object-methods</a>
+					</footer>	
+				</section>
+				<section>
+					<h3>free this</h3>
+					<p>Pero depende como se llame al método</p>
+					<pre><code data-trim class="JavaScript">
+const saluda = pepe.saluda // se copia la función, this puede formar parte de ella
+
+saluda() // Soy undefined
+					</code></pre>
+					<p>
+						<strong>this</strong> no está ligada, se asigna en tiempo de ejecución
+					</p>
+					<footer>
+						<a href="https://javascript.info/object-methods#this-in-methods" target="_blank">
+									this in object-methods</a>
+					</footer>	
+				</section>
+				<section>
+					<h3>bind this</h3>
+					<p>el método se liga con bind</p>
+					<pre><code data-trim class="JavaScript">
+const saluda = pepe.saluda.bind(this)  // ahora la this es el del objeto
+
+saluda() // Soy Pepe
+					</code></pre>
+					<p>
+						<strong>this</strong> no está ligada, se asigna en tiempo de ejecución
+					</p>
+					<footer>
+						<a href="https://javascript.info/object-methods#this-in-methods" target="_blank">
+									this in object-methods</a>
+					</footer>	
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3> funciones flecha &nbsp;<strong>=&gt;</strong></h3>
+					<br>
+					<p>
+						También podemos poner las funciones con la notación 'flecha'
+					</p>
+					<pre><code data-trim class="JavaScript">
+const cuadrado = function (x) {
+	return x*x
+}
+
+// Con arrow function
+const cuadrado = (x) => { return x*x }  
+					</code></pre>	
+					<p>
+						Arrow function
+					</p>
+					<footer>
+						<a href="https://www.digitalocean.com/community/tutorials/getting-started-with-es6-arrow-functions-in-javascript" target="_blank">
+							Getting Started with ES6 Arrow Functions in JavaScript</a>
+					</footer>
+				</section>
+				<section>
+					<p>
+						que las podemos usar en: <strong>array.filter</strong>
+					</p>
+					<pre><code data-trim class="JavaScript">
+						const números = [1, -2, 3, 4, -7]
+
+						const solo_positivos = números.filter(v => v >= 0)
+					</code></pre>
+					<footer>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank">JavaScript Array Filtering</a>
+					</footer>
+				</section>
+
+				<section>
+					<p>
+						y en: <strong>array.map</strong>
+					</p>
+					<pre><code data-trim class="JavaScript">
+						const números = [1, -2, 3, 4, -7]
+
+						const items = números.map(v => '&lt;l&gt;' + v + '&lt;/l&gt;')
+
+						const lista = '&lt;ul&gt;' + items.join('') + '&lt;/ul&gt;'
+					</code></pre>
+					<footer>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank">JavaScript Array Mapping</a>
+					</footer>
+				</section>
+				<section>
+					<p>
+						que se pueden encadenar
+					</p>
+					<pre><code data-trim class="JavaScript">
+						const números = [1, -2, 3, 4, -7]
+
+						const lista = números.filter(v => v >= 0).map(v => '&lt;l&gt;' + v + '&lt;/l&gt;')
+					</code></pre>
+					<footer>
+						<a href="https://www.youtube.com/watch?v=G3BS3sh3D8Q" target="_blank">JavaScript Array Mapping</a>
+					</footer>
+				</section>
+			</section>
+
+				<section>
+					<h3>Las funciones flecha no tienen <strong>this</strong></h3>
+					<pre><code data-trim class="JavaScript">
+
+						let user = {
+							firstName: "Ilya",
+							sayHi() {
+							  let arrow = () => alert(this.firstName);
+							  arrow();
+							}
+						  };
+						  
+						  user.sayHi(); // Ily
+
+					</code></pre>
+					<p>Se coge como otra variable, está 'lexicaly bounded'</p>
+					<footer>
+						<a href="https://javascript.info/arrow-functions#arrow-functions-have-no-this" target="_blank">
+							Arrow functions have no “this”</a>
+					</footer>
+				</section>
+			<section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>En lugar de:</p>
+					<pre><code data-trim class="JavaScript">
+						let dirección = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+							dp: '18004'
+						}
+
+						let calle = dirección.calle
+						let ciudad = dirección.ciudad
+						let dp = dirección.dp
+					</code></pre>
+					<p>se puede poner:</p>
+				</section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>&nbsp;</p>
+					<pre><code data-trim class="JavaScript">
+						let dirección = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+							dp: '18004'
+						}
+						
+						let { calle, ciudad, dp } = dirección
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/destructuring-assignment#object-destructuring" target="_blank">
+							object destructuring</a>
+					</footer>
+				</section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>Con parámetros por defecto</p>
+					<pre><code data-trim class="JavaScript">
+						let dirección = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+							dp: '18004'
+						}
+						
+						let { calle, ciudad, dp, provincia="Granada"} = dirección
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/destructuring-assignment#object-destructuring" target="_blank">
+							object destructuring</a>
+					</footer>
+				</section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>puedo coger solo una propiedad</p>
+					<pre><code data-trim class="JavaScript">
+						let dirección = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+							dp: '18004'
+						}
+						
+						let { calle } = dirección
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/destructuring-assignment#object-destructuring" target="_blank">
+							object destructuring</a>
+					</footer>
+				</section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>puedo coger solo una propiedad, y el resto <strong>...</strong></p>
+					<pre><code data-trim class="JavaScript">
+						let dirección = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+							dp: '18004'
+						}
+						
+						let { calle, ...resto } = dirección
+						resto.ciudad // Granada
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/destructuring-assignment#object-destructuring" target="_blank">
+							object destructuring</a>
+					</footer>
+				</section>
+				<section>
+					<h3>object destructuring</h3>
+					<p>puedo combinar objeros</p>
+					<pre><code data-trim class="JavaScript">
+						let dirección_1 = {
+							calle: 'Pedro Antonio',
+							ciudad: 'Granada',
+						}
+						let dirección_2 = {
+							dp: '10004',
+							pais: 'España',
+						}
+
+						let dirección_completa = {...dirección_1, ...dirección_2}
+						
+					</code></pre>
+					<footer>
+						<a href="https://javascript.info/destructuring-assignment#object-destructuring" target="_blank">
+							object destructuring</a>
+					</footer>
+			</section>
+		</section>
+
+			<section>
+				<h3>Array destructuring</h3>
+				<p>Igual para los arrays</p>
+				<pre><code data-trim class="JavaScript">
+					const dir = ['Pedro Antonio', '18004', 'Granada']
+					let [calle, ...resto] = dirección
+
+					calle // Pedro Antonio
+
+					resto[0] // 18004
+
+				</code></pre>
+				<footer>
+					<a href="https://javascript.info/destructuring-assignment#array-destructuring" target="_blank">
+						array destructuring</a>
+				</footer>
+			</section>
+			<section>
+				<h3>Operador spread</h3>
+				<p><strong>...</strong> a la derecha expande</p>
+				<pre><code data-trim class="JavaScript">
+
+					a = [1, 2, 3]
+					b = [4, 5, 6]
+
+					c = [...a, 8, ...b]
+
+					c // [1, 2, 3, 8, 4, 5, 6]
+
+				</code></pre>
+				<footer>
+					<a href="https://javascript.info/destructuring-assignment#array-destructuring" target="_blank">
+						array destructuring</a>
+				</footer>
+			</section>
+		<section>
+			<section>
+				<h3>Rest Parameter</h3>
+				<p>En la definición de funciones</p>
+				<pre><code data-trim class="JavaScript">
+					function sumAll(...args) { // args is the name for the array
+						let sum = 0;
+						for (let arg of args) sum += arg;
+						return sum;
+					  }
+					  
+					  alert( sumAll(1) ); // 1
+					  alert( sumAll(1, 2) ); // 3
+					  alert( sumAll(1, 2, 3) ); // 6
+				</code></pre>
+				<p>como en python</p>
+				<footer>
+					<a href="https://javascript.info/rest-parameters-spread" target="_blank">
+						rest paramenter</a>
+				</footer>				
+			</section>
+			<section>
+				<h3>Rest Parameter</h3>
+				<p>Distinto en las llamdas, que expande</p>
+				<pre><code data-trim class="JavaScript">
+					let arr = [3, 5, 1];
+
+					// (spread expande el array en argumentos)
+					alert( Math.max(...arr) ); 
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/rest-parameters-spread" target="_blank">
+						rest paramenter</a>
+				</footer>				
+			</section>
+			<section>
+				<h3>Valores por defecto en argumentos de funciones</h3>
+				<p>Usando la destructuración de objetos</p>
+				<pre><code data-trim class="JavaScript">
+
+function F({a, b=7}) {
+   return a + b
+}					
+
+F({a:7})  // 14
+
+				</code></pre>
+				<p>Casi como en python</p>
+				<footer>
+					<a href="https://stackoverflow.com/questions/32353186/parameter-names-with-es6" target="_blank">
+						Parameter names with ES6?</a>
+				</footer>				
+			</section>
+		</section>	
+		<section>
+			<section>
+				<h3>Nueva copia de arrays/objetos</h3>
+				<p> </p>
+				<pre><code data-trim class="JavaScript">
+					let obj = { a: 1, b: 2, c: 3 };
+					let objCopy = { ...obj }; // spread the object into a list of parameters
+								// then return the result in a new object
+					
+					// do the objects have the same contents?
+					alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
+					
+					// are the objects equal?
+					alert(obj === objCopy); // false (not same reference)
+					
+					// modifying our initial object does not modify the copy:
+					obj.d = 4;
+					alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
+					alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/rest-parameters-spread#get-a-new-copy-of-an-object-array" target="_blank">
+						Get a new copy of an object/array</a>
+				</footer>				
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Clases</h3>
+				<p> </p>
+				<pre><code data-trim class="JavaScript">
+					class User {
+
+						constructor(name) {
+						  this.name = name;
+						}
+					  
+						Saluda() {
+						  alert('hola, soy '+this.name);
+						}
+					  }
+					  
+					  // Uso:
+					  let user = new User("John"); // clase mayúscula, 
+					  user.Saluda();                // objeto minúscula
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/class" target="_blank">
+						class</a>
+				</footer>				
+			</section>
+
+			<section>
+				<h3>Herencia</h3>
+				<p> </p>
+				<pre><code data-trim class="JavaScript">
+					class Usuario extends User(nombre, apellido) {
+						constructor (name, apellido) {
+							super(nombre)
+							this.apellido = apellido
+						}
+						DiHola() {
+						  alert('hola, soy '+this.name+ ' '+this.apellido);
+						}
+					  }
+					  
+					  // Uso:
+					  let user = new User("John", "Smith");
+					  user.Saluda();
+					  user.DiHola()
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/class-inheritance" target="_blank">
+						class inheritance</a>
+				</footer>				
+			</section>
+		</section>	
+
+			<section>
+				<h3>Separación de intereses</h3>
+				<br>
+				<img src="images/Screen+Shot+2019-12-16+at+7.54.17+AM.png" height="380px">
+				<br>
+				<footer>
+					<a href="https://www.santamariacode.com/home/what-is-separation-of-concerns" target="_blank">
+							Software Engineering Separation of Concerns for Beginners</a>
+				</footer>
+			</section>
+
+			<section>
+				<h3>Módulos</h3>
+				<p> Cada archivo, es un módulo</p>
+				<pre><code data-trim class="JavaScript">
+// 📁 sayHi.js
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+// 📁 main.js
+import {sayHi} from './sayHi';
+
+alert(sayHi);  // function...
+sayHi('John'); // Hello, John!
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/modules-intro" target="_blank">
+						modules intro</a>
+				</footer>				
+			</section>
+
+			<section>
+				<h3>Módulos</h3>
+				<p> Lo mismo para las clases</p>
+				<pre><code data-trim class="JavaScript">
+// 📁 User.js
+export class User{    // named exports
+	Saluda() {
+  		alert(`Hello`)
+	}
+}
+
+// 📁 main.js
+import {User} from './User';     // named import
+
+user = new User()
+user.Saluda()
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/modules-intro" target="_blank">
+						modules intro</a>
+				</footer>				
+			</section>
+
+			<section>
+				<h3>Módulos</h3>
+				<p> Default exports  </p>
+				<pre><code data-trim class="JavaScript">
+// 📁 User.js
+default export class User{    // default exports
+	Saluda() {
+  		alert(`Hello`)
+	}
+}
+
+// 📁 main.js
+import User from './User';     // default  import
+
+user = new User()
+user.Saluda()
+				</code></pre>
+				<p></p>
+				<footer>
+					<a href="https://javascript.info/modules-intro" target="_blank">
+						modules intro</a>
+				</footer>				
+			</section>
+
+			<section>
+				<h3>Promises</h3>
+				<br>
+				<p>
+					Seguimos <a href="https://www.youtube.com/watch?v=DgxTkd43VZ0" target="_blank">
+						Promises ES6 | Amigos code</a>
+				</p>
+				<br>
+				<footer>
+					<a href="https://javascript.info/async" target="_blank">
+						Promises, async/await</a>
+				</footer>
+			</section>
+
+			</div>
+		</div>
+
+
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

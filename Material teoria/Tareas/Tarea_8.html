@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Tarea 8</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-python.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-bash.min.js"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-markup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-yaml.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-javascript.min.js"></script>
+ 	<style>
+		body {
+			padding-top: 1em;
+		}
+		p {
+			padding-top: 0.5em;
+		}
+		h2, h3, h4, h5, h6 {
+			padding-bottom: 0.2em;
+			padding-top: 1em;
+		}
+		.grey {
+			color: grey;
+		}
+
+	</style>
+</head>
+<body>
+		<br>
+		<img src="https://geekflare.com/wp-content/uploads/2020/11/react-rendering.jpg" alt=""
+		style="height:220px;width:40%;margin-left:28%" />
+	<div class="container">
+		<br>
+		<h3>React</h3>
+		<p>
+			En esta tarea haremos un front-end con react para nuestra aplicación.
+			Será un versión simplificada del que hemos hecho en html.
+		</p>
+		<p>
+		 Primero habrá que instalar <a href="https://github.com/adamchainz/django-cors-headers">django-cors-header</a> para 
+		 usarlo durante la fase de desarrollo, permitiendo que se hagan requerimiientos a al servidor desde una url distinta
+		 a la propia del servidor. Lo hacemos como aclara en la segunda respuesta de 
+		 <a href="https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework">
+			How can I enable CORS on my Django REST Framework? </a>.
+		</p>
+		<p>
+			En los primeros minutos de <a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a>,
+			hay una introducción a React, y a partir del minuto <a href="https://youtu.be/Ke90Tje7VS0?t=1447">24</a>, como se incorpora
+			boostrap:
+<pre><code datatrim class="language-bash">&gt; create-reat-app frontend
+&gt; cd frontend
+&gt; npm install react-bootstrap bootstrap@4.6.0
+</code></pre>
+Para instalar la versión actual de <a href="https://react-bootstrap.github.io/getting-started/introduction">react-boostrap</a>.
+<br>Y en <b>index.js</b>:
+<pre><code datatrim class="language-javascript">...
+import 'bootstrap/dist/css/bootstrap.min.css'
+...
+</code></pre>
+		</p>
+		<h4>Fetch</h4>
+		<p>
+			Para traer los datos desde el API del servidor podemos usar la función 
+			<a href="https://javascript.info/fetch">fetch</a> de <a href="https://javascript.info/">ES6</a>. 
+			El momento de traer los datos es justo después de montar el componente principal. 
+			<pre><code datatrim class="language-javascript">// App.js
+
+class App extends  React.Component {				
+
+	constructor(props) {
+    super(props)
+
+  	this.state = {
+    	excursiones:[],
+			... 
+		}
+	}
+
+	...
+	componentDidMount() {
+		const url = 'http://localhost:8000/api/excursiones'
+
+		// una promise, que devuelve otra promise
+		fetch(url)
+			.then(res => res.json())
+			.then(res => {
+						console.log(res)
+						this.setState({excursiones:res})   // Se cambia el state y re-renderiza
+					})
+			.catch(error => {
+				alert('Error '+ error)
+			})
+	}
+...</code></pre>
+		</p>
+		<h4>Formulario de búsqueda</h4>
+		<p>
+			<pre><code datatrim class="language-javascript">// Búsqueda.js 
+class Busqueda extends React.Component {
+
+	constructor(props) {
+		super(props)
+	}
+	
+	handleChange(event) {
+    console.log(event.target.value)
+    this.props.handleBuscar(event.target.value) // Pasar hacia arriba el valor
+    }
+
+	// onChange bindeada para que coja el this
+	render() {
+		return (  
+			&lt;Form style={{marginTop:'8%', paddingBottom:'2%'}}&gt;
+				&lt;Form.Group&gt;
+					&lt;Form.Label&gt;Buscar excursiones&lt;/Form.Label&gt;  
+					&lt;Form.Control type="text" placeholder="..." onChange={this.handleChange.bind(this)}/&gt;
+				&lt;/Form.Group&gt;
+			&lt;/Form&gt;
+		)}
+	}
+}
+export default Busqueda</code></pre>
+		</p>
+		<br><br>
+		<h6>Referencias:</h6>
+		<ul>
+			<li><a href="https://www.digitalocean.com/community/tutorials/7-ways-to-implement-conditional-rendering-in-react-applications">
+				7 Ways to Implement Conditional Rendering in React Applications</a></li>
+			<li> <a href="https://www.w3schools.com/react/react_lifecycle.asp">
+				React Lifecycle</a></li>
+			<li><a href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch">Using Fetch</a></li>
+		</ul>
+
+
+	</div>
+	<br><br><br>
+</body>
+</html>
